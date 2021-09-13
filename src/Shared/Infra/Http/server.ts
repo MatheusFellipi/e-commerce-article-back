@@ -4,7 +4,6 @@ import "reflect-metadata";
 import express, { NextFunction, Request, response, Response } from "express";
 import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
-import "@shared/infra/typeorm";
 import "@shared/container";
 
 import swaggerFile from "../../../swagger.json";
