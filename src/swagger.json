@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Articles Documentation",
+    "description": "This is an API Articles",
+    "version": "1.0.0",
+    "contact": {
+      "email": "matheus"
+    }
+  },
+  
+  "paths": {}
+}
