@@ -11,7 +11,7 @@ import { v4 as uuidV4 } from 'uuid';
 @Entity('themes')
 class Themes {
   @PrimaryColumn()
-  key_theme: string;
+  id: string;
 
   @Column('varchar')
   theme: string;
@@ -23,8 +23,8 @@ class Themes {
   update_at: Date;
 
   constructor() {
-    if (!this.key_theme) {
-      this.key_theme = uuidV4();
+    if (!this.id) {
+      this.id = uuidV4();
     }
   }
 }

@@ -1,4 +1,4 @@
-import { AppError } from 'Shared/Infra/typeorm/errors/appError';
+import { AppError } from '@Shared/Errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IThemeRepository } from '../Repositories/IThemeRepository';
 

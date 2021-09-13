@@ -5,11 +5,11 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": ["Modules/*"],
-      "@errors/*": ["Errors/*"],
-      "@config/*": ["Config/*"],
-      "@shared/*": ["Shared/*"],
-      "@utils/*": ["Utils/*"]
+      "@Modules/*": ["Modules/*"],
+      "@Errors/*": ["Errors/*"],
+      "@Config/*": ["Config/*"],
+      "@Shared/*": ["Shared/*"],
+      "@Utils/*": ["Utils/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,

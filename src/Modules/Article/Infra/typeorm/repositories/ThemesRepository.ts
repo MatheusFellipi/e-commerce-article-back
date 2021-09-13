@@ -1,5 +1,5 @@
-import { IThemeDTO } from 'Module/Article/DTOS/IThemeDTO';
-import { IThemeRepository } from 'Module/Article/Repositories/IThemeRepository';
+import { IThemeDTO } from '@Modules/Article/DTOS/IThemeDTO';
+import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
 import { getRepository, Repository } from 'typeorm';
 import { Themes } from '../entities/Themes';
 

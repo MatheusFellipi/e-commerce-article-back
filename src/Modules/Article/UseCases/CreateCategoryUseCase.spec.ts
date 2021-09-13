@@ -1,8 +1,8 @@
-import { AppError } from 'Shared/Infra/typeorm/errors/appError';
-import { ThemeRepositoryInMemory } from '../Repositories/in-memory/ThemeRepositoryInMemory';
-import { CreateThemeUseCase } from './CreateCategoryUseCase';
+import { AppError } from "@Shared/Errors/AppError";
+import { ThemeRepositoryInMemory } from "../Repositories/in-memory/ThemeRepositoryInMemory";
+import { CreateThemeUseCase } from "./CreateCategoryUseCase";
 
-describe('Create Category', () => {
+describe('Create theme', () => {
   let createThemeUseCase: CreateThemeUseCase;
   let themeRepositoryInMemory: ThemeRepositoryInMemory;
 
