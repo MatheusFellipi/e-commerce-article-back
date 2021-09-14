@@ -1,5 +1,5 @@
 import { IThemeDTO } from '../DTOS/IThemeDTO';
-import { Themes } from '../Infra/typeorm/entities/Themes';
+import { Themes } from '../Infra/Typeorm/Entities/Themes';
 
 interface IThemeRepository {
   create(data: IThemeDTO): Promise<void>;

@@ -6,8 +6,8 @@ import { CreateThemeUseCase } from './CreateThemeUseCase';
 class CreateThemeController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { theme } = request.body;
-
     const createCategoryUseCase = container.resolve(CreateThemeUseCase);
+
     await createCategoryUseCase.execute({
       theme,
     });
@@ -15,4 +15,4 @@ class CreateThemeController {
     return response.status(201).send();
   }
 }
-export { CreateThemeUseCase };
+export { CreateThemeController };

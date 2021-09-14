@@ -1,6 +1,6 @@
-import { IThemeDTO } from "@Modules/Article/DTOS/IThemeDTO";
-import { Themes } from "@Modules/Article/Infra/typeorm/entities/Themes";
-import { IThemeRepository } from "../IThemeRepository";
+import { IThemeDTO } from '@Modules/Article/DTOS/IThemeDTO';
+import { Themes } from '@Modules/Article/Infra/Typeorm/Entities/Themes';
+import { IThemeRepository } from '../IThemeRepository';
 
 class ThemeRepositoryInMemory implements IThemeRepository {
   private themesArr: Themes[];

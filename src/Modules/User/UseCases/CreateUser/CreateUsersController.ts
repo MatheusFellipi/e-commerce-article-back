@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import { CreateUsersUseCase } from './CreateUsersUseCase';
 
-class CreateThemeController {
+class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, password, email } = request.body;
 
@@ -15,4 +15,4 @@ class CreateThemeController {
     return response.status(201).send();
   }
 }
-export { CreateThemeController };
+export { CreateUserController };

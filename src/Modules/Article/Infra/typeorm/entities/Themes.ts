@@ -19,9 +19,6 @@ class Themes {
   @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn()
-  update_at: Date;
-
   constructor() {
     if (!this.id) {
       this.id = uuidV4();

@@ -1,7 +1,7 @@
+import { getRepository, Repository } from 'typeorm';
 import { IThemeDTO } from '@Modules/Article/DTOS/IThemeDTO';
 import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
-import { getRepository, Repository } from 'typeorm';
-import { Themes } from '../entities/Themes';
+import { Themes } from '../Entities/Themes';
 
 class ThemeRepository implements IThemeRepository {
   private repository: Repository<Themes>;

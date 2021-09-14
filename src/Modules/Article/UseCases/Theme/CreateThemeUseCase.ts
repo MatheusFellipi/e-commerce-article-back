@@ -5,6 +5,7 @@ import { AppError } from '@Shared/Errors/AppError';
 interface IRequest {
   theme: string;
 }
+
 @injectable()
 class CreateThemeUseCase {
   constructor(
