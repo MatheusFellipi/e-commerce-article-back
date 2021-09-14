@@ -1,6 +1,6 @@
-import { AppError } from '@Shared/Errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { IThemeRepository } from '../Repositories/IThemeRepository';
+import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
+import { AppError } from '@Shared/Errors/AppError';
 
 interface IRequest {
   theme: string;

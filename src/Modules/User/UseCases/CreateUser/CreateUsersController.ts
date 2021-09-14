@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateThemeUseCase } from './CreateCategoryUseCase';
+import { CreateUsersUseCase } from './CreateUsersUseCase';
 
 class CreateThemeController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { theme } = request.body;
+    const { name, password, email } = request.body;
 
-    const createCategoryUseCase = container.resolve(CreateThemeUseCase);
+    const createCategoryUseCase = container.resolve(CreateUsersUseCase);
     await createCategoryUseCase.execute({
-      theme,
+      name, password, email
     });
 
     return response.status(201).send();
   }
 }
-export { CreateThemeUseCase };
+export { CreateThemeController };
