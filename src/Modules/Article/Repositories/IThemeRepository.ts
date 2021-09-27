@@ -1,9 +1,9 @@
-import { IThemeDTO } from '../DTOS/IThemeDTO';
+import { ICreateThemeDTO } from '../DTOS/IThemeDTO';
 import { Themes } from '../Infra/Typeorm/Entities/Themes';
 
 interface IThemeRepository {
-  create(data: IThemeDTO): Promise<void>;
-  findByName(theme: string): Promise<Themes>;
+  create(data: ICreateThemeDTO): Promise<void>;
+  findByName(termoPesquisa: string): Promise<Themes>;
 }
 
 export { IThemeRepository };

@@ -1,6 +1,6 @@
-interface IThemeDTO {
+interface ICreateThemeDTO {
   theme: string;
   id?: string;
 }
 
-export { IThemeDTO };
+export { ICreateThemeDTO };

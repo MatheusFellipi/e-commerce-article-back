@@ -8,8 +8,11 @@ class CreateUserController {
     const { name, password, email } = request.body;
 
     const createCategoryUseCase = container.resolve(CreateUsersUseCase);
+
     await createCategoryUseCase.execute({
-      name, password, email
+      name,
+      password,
+      email,
     });
 
     return response.status(201).send();

@@ -1,42 +1,43 @@
-import { AppError } from "@Shared/Errors/AppError";
-import { ThemeRepositoryInMemory } from "../Repositories/in-memory/ThemeRepositoryInMemory";
-import { CreateThemeUseCase } from "./CreateCategoryUseCase";
+import { ThemesRepositoryInMemory } from '@Modules/Article/Repositories/in-memory/ThemeRepositoryInMemory';
+import { AppError } from '@Shared/Errors/AppError';
+import { CreateThemeUseCase } from './CreateThemeUseCase';
 
-describe('Create theme', () => {
-  let createThemeUseCase: CreateThemeUseCase;
-  let themeRepositoryInMemory: ThemeRepositoryInMemory;
+describe('Create Category', () => {
+  let createCategoryUseCase: CreateThemeUseCase;
+  let categoriesRepositoryInMemory: ThemesRepositoryInMemory;
 
   beforeEach(() => {
-    themeRepositoryInMemory = new ThemeRepositoryInMemory();
-    createThemeUseCase = new CreateThemeUseCase(themeRepositoryInMemory);
+    categoriesRepositoryInMemory = new ThemesRepositoryInMemory();
+    createCategoryUseCase = new CreateThemeUseCase(
+      categoriesRepositoryInMemory
+    );
   });
-  it('should be able to create a new theme', async () => {
-    const themes = {
-      theme: 'theme test',
+  it('should be able to create a new category', async () => {
+    const category = {
+      name: 'category test',
     };
-
-    await createThemeUseCase.execute({
-      theme: themes.theme,
+    await createCategoryUseCase.execute({
+      theme: category.name,
     });
 
-    const categoryCreated = await themeRepositoryInMemory.findByName(
-      themes.theme
+    const categoryCreated = await categoriesRepositoryInMemory.findByName(
+      category.name
     );
-
     expect(categoryCreated).toHaveProperty('id');
   });
-  it('should not be able to create a new theme with name exists', async () => {
+
+  it('should not be able to create a new category with name exists', async () => {
     expect(async () => {
-      const themes = {
-        theme: 'theme test',
+      const category = {
+        name: 'category test',
+        description: 'category description test',
       };
 
-      await createThemeUseCase.execute({
-        theme: themes.theme,
+      await createCategoryUseCase.execute({
+        theme: category.name,
       });
-
-      await createThemeUseCase.execute({
-        theme: themes.theme,
+      await createCategoryUseCase.execute({
+        theme: category.name,
       });
     }).rejects.toBeInstanceOf(AppError);
   });
