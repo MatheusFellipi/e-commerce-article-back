@@ -9,7 +9,7 @@ import {
 import { v4 as uuidV4 } from 'uuid';
 
 @Entity('users')
-class Users {
+class User {
   @PrimaryColumn('uuid')
   id: string;
 
@@ -41,4 +41,4 @@ class Users {
   }
 }
 
-export { Users };
+export { User };

@@ -1,31 +1,39 @@
-import { IUsersDTO } from '@Modules/Account/DTOS/IUsersDTO';
-import { Users } from '@Modules/Account/Infra/typeorm/entities/Users';
+import { DTOCreateUsers } from '@Modules/Account/DTOS/DTOCreateUsers';
+import { User } from '@Modules/Account/Infra/typeorm/entities/Users';
 import { IUsersRepository } from '@Modules/Account/Repositories/IUsersRepository';
 import { hash } from 'bcrypt';
 import { getRepository, Repository } from 'typeorm';
 
-class UsersRepositoryInMemory implements IUsersRepository {
-  private repository: Repository<Users>;
+export class UsersRepository implements IUsersRepository {
+  private repository: Repository<User>;
 
   constructor() {
-    this.repository = getRepository(Users);
+    this.repository = getRepository(User);
   }
 
-  findByEmail(email: string): Promise<Users> {
-    const res = this.repository.findOne({ email });
-    return res;
+  async findById(id: string): Promise<User> {
+    return await this.repository.findOne({ id });
   }
 
-  async create({ email, name, password }: IUsersDTO): Promise<void> {
-    const passwordHash = await hash(password, 7456);
+  findByEmail(email: string): Promise<User> {
+    return this.repository.findOne({ email });
+  }
 
+  async create({
+    email,
+    name,
+    password,
+    job_role,
+    img_url,
+  }: DTOCreateUsers): Promise<void> {
     const user = this.repository.create({
       email,
       name,
-      password: passwordHash,
+      password,
+      job_role,
+      img_url,
     });
 
     await this.repository.save(user);
   }
 }
-export { UsersRepositoryInMemory };

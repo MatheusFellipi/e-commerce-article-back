@@ -1,31 +1,35 @@
-import { IUsersDTO } from '@Modules/Account/DTOS/IUsersDTO';
-import { Users } from '@Modules/Account/Infra/typeorm/entities/Users';
+import { DTOCreateUsers } from '@Modules/Account/DTOS/DTOCreateUsers';
+import { User } from '@Modules/Account/Infra/typeorm/entities/Users';
 import { IUsersRepository } from '../IUsersRepository';
-import { hash } from 'bcrypt';
 
-class UsersRepositoryInMemory implements IUsersRepository {
-  private userArry: Users[];
+export class UsersRepositoryInMemory implements IUsersRepository {
+  private _users: User[] = [];
 
-  constructor() {
-    this.userArry = [];
-  }
-
-  async findByEmail(termoPesquisa: string): Promise<Users> {
-    return this.userArry.find((user) => user.email === termoPesquisa);
-  }
-
-  async create({ email, name, password }: IUsersDTO): Promise<void> {
-    const user = new Users();
-
-    const passwordHash = await hash(password, 7456);
+  async create({
+    email,
+    job_role,
+    img_url,
+    name,
+    password,
+  }: DTOCreateUsers): Promise<void> {
+    const user = new User();
 
     Object.assign(user, {
       email,
+      job_role,
+      img_url,
       name,
-      password: passwordHash,
+      password,
     });
 
-    this.userArry.push(user);
+    this._users.push(user);
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    return this._users.find((user) => user.email === email);
+  }
+
+  async findById(id: string): Promise<User> {
+    return this._users.find((user) => user.id === id);
   }
 }
-export { UsersRepositoryInMemory };

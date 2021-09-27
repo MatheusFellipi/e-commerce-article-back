@@ -15,7 +15,6 @@ export class ThemeRepositoryInMemory implements IThemeRepository {
     Object.assign(entitiesThemes, { theme });
 
     this._theme.push(entitiesThemes);
-    console.log(this._theme);
   }
 
   async findByName(termoPesquisa: string): Promise<Themes> {
