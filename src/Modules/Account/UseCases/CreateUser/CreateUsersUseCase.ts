@@ -12,10 +12,10 @@ interface IRequest {
 }
 
 @injectable()
-class CreateUsersUseCase {
+export class CreateUsersUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private repository: IUsersRepository
   ) {}
 
   async execute({
@@ -25,14 +25,15 @@ class CreateUsersUseCase {
     img_url,
     job_role,
   }: IRequest): Promise<void> {
-    const UsersAlreadyExists = await this.usersRepository.findByEmail(email);
+    const UsersAlreadyExists = await this.repository.findByEmail(email);
 
     if (UsersAlreadyExists) {
-      throw new AppError('Users  already exists!');
+      throw new AppError('Users already exists!');
     }
+
     const passwordHash = await hash(password, 8);
 
-    this.usersRepository.create({
+    this.repository.create({
       email,
       password: passwordHash,
       name,
@@ -41,4 +42,3 @@ class CreateUsersUseCase {
     });
   }
 }
-export { CreateUsersUseCase };

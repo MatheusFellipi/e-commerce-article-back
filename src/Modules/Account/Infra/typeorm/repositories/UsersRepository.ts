@@ -1,39 +1,39 @@
-import { DTOCreateUsers } from '@Modules/Account/DTOS/DTOCreateUsers';
-import { User } from '@Modules/Account/Infra/typeorm/entities/Users';
-import { IUsersRepository } from '@Modules/Account/Repositories/IUsersRepository';
-import { hash } from 'bcrypt';
 import { getRepository, Repository } from 'typeorm';
+import { DTOCreateUsers } from '@Modules/Account/DTOS/DTOCreateUsers';
+import { IUsersRepository } from '@Modules/Account/Repositories/IUsersRepository';
+import { User } from '../Entities/Users';
 
-export class UsersRepository implements IUsersRepository {
+class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
 
   constructor() {
     this.repository = getRepository(User);
   }
 
-  async findById(id: string): Promise<User> {
-    return await this.repository.findOne({ id });
-  }
-
-  findByEmail(email: string): Promise<User> {
-    return this.repository.findOne({ email });
-  }
-
   async create({
     email,
-    name,
     password,
-    job_role,
+    name,
     img_url,
+    job_role,
   }: DTOCreateUsers): Promise<void> {
     const user = this.repository.create({
       email,
-      name,
       password,
-      job_role,
+      name,
       img_url,
+      job_role,
     });
-
     await this.repository.save(user);
   }
+
+  async findByEmail(email: string): Promise<User> {
+    return await this.repository.findOne({ email });
+  }
+
+  async findById(id: string): Promise<User> {
+    return await this.repository.findOne(id);
+  }
 }
+
+export { UsersRepository };

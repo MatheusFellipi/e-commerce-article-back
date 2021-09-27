@@ -2,13 +2,13 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { CreateUsersUseCase } from './CreateUsersUseCase';
 
-class CreateUserController {
+export class CreateUsersController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, email, password, job_role, img_url } = request.body;
 
-    const createCategoryUseCase = container.resolve(CreateUsersUseCase);
+    const createUsersUseCase = container.resolve(CreateUsersUseCase);
 
-    await createCategoryUseCase.execute({
+    await createUsersUseCase.execute({
       name,
       email,
       password,
@@ -19,4 +19,3 @@ class CreateUserController {
     return response.status(201).send();
   }
 }
-export { CreateUserController };
