@@ -17,7 +17,7 @@ class CreateThemeUseCase {
     const themeAlreadyExists = await this.themeRepository.findByName(theme);
 
     if (themeAlreadyExists) {
-      throw new AppError('Tema ja existe!');
+      throw new AppError('Theme already exists!');
     }
 
     this.themeRepository.create({ theme });

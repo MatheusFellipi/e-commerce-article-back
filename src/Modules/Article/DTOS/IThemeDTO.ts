@@ -1,6 +1,6 @@
-interface ICreateThemeDTO {
+interface DTOCreateTheme {
   theme: string;
   id?: string;
 }
 
-export { ICreateThemeDTO };
+export { DTOCreateTheme };

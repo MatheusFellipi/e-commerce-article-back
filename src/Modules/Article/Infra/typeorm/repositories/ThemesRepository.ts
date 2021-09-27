@@ -1,5 +1,5 @@
 import { getRepository, Repository } from 'typeorm';
-import { IThemeDTO } from '@Modules/Article/DTOS/IThemeDTO';
+import { DTOCreateTheme } from '@Modules/Article/DTOS/IThemeDTO';
 import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
 import { Themes } from '../Entities/Themes';
 
@@ -10,7 +10,7 @@ class ThemeRepository implements IThemeRepository {
     this.repository = getRepository(Themes);
   }
 
-  async create({ theme }: IThemeDTO): Promise<void> {
+  async create({ theme }: DTOCreateTheme): Promise<void> {
     const themes = this.repository.create({
       theme,
     });

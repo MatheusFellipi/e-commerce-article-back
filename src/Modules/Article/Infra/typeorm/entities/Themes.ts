@@ -1,11 +1,4 @@
-import {
-  Entity,
-  Column,
-  CreateDateColumn,
-  PrimaryColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-
+import { Entity, Column, CreateDateColumn, PrimaryColumn } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 @Entity('themes')

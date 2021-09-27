@@ -1,25 +1,24 @@
-import { ICreateThemeDTO } from '@Modules/Article/DTOS/IThemeDTO';
+import { DTOCreateTheme } from '@Modules/Article/DTOS/IThemeDTO';
 import { Themes } from '@Modules/Article/Infra/Typeorm/Entities/Themes';
 import { IThemeRepository } from '../IThemeRepository';
 
-class ThemesRepositoryInMemory implements IThemeRepository {
-  private dadosThemes: Themes[];
+export class ThemeRepositoryInMemory implements IThemeRepository {
+  private _theme: Themes[];
 
   constructor() {
-    this.dadosThemes = [];
-  }
-  async findByName(name: string): Promise<Themes> {
-    return this.dadosThemes.find((category) => category.theme === name);
+    this._theme = [];
   }
 
-  async create({ theme }: ICreateThemeDTO): Promise<void> {
-    const themes = new Themes();
+  async create({ theme }: DTOCreateTheme): Promise<void> {
+    const entitiesThemes = new Themes();
 
-    Object.assign(themes, {
-      theme,
-    });
+    Object.assign(entitiesThemes, { theme });
 
-    this.dadosThemes.push(themes);
+    this._theme.push(entitiesThemes);
+    console.log(this._theme);
+  }
+
+  async findByName(termoPesquisa: string): Promise<Themes> {
+    return this._theme.find((el) => el.theme === termoPesquisa);
   }
 }
-export { ThemesRepositoryInMemory };

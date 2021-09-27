@@ -1,44 +1,31 @@
-import { ThemesRepositoryInMemory } from '@Modules/Article/Repositories/in-memory/ThemeRepositoryInMemory';
+import { ThemeRepositoryInMemory } from '@Modules/Article/Repositories/in-memory/ThemeRepositoryInMemory';
 import { AppError } from '@Shared/Errors/AppError';
 import { CreateThemeUseCase } from './CreateThemeUseCase';
 
-describe('Create Category', () => {
-  let createCategoryUseCase: CreateThemeUseCase;
-  let categoriesRepositoryInMemory: ThemesRepositoryInMemory;
+describe('Create themes', () => {
+  let createThemesUseCase: CreateThemeUseCase;
+  let themeRepositoryInMemory: ThemeRepositoryInMemory;
 
   beforeEach(() => {
-    categoriesRepositoryInMemory = new ThemesRepositoryInMemory();
-    createCategoryUseCase = new CreateThemeUseCase(
-      categoriesRepositoryInMemory
-    );
-  });
-  it('should be able to create a new category', async () => {
-    const category = {
-      name: 'category test',
-    };
-    await createCategoryUseCase.execute({
-      theme: category.name,
-    });
-
-    const categoryCreated = await categoriesRepositoryInMemory.findByName(
-      category.name
-    );
-    expect(categoryCreated).toHaveProperty('id');
+    themeRepositoryInMemory = new ThemeRepositoryInMemory();
+    createThemesUseCase = new CreateThemeUseCase(themeRepositoryInMemory);
   });
 
-  it('should not be able to create a new category with name exists', async () => {
+  it('should be able to create a new themes', async () => {
+    const theme = 'theme test';
+    await createThemesUseCase.execute({ theme });
+
+    const res = await themeRepositoryInMemory.findByName(theme);
+
+    expect(res).toHaveProperty('id');
+  });
+
+  it('should not be able to create a new themes with name exists', async () => {
     expect(async () => {
-      const category = {
-        name: 'category test',
-        description: 'category description test',
-      };
+      const theme = 'theme test';
 
-      await createCategoryUseCase.execute({
-        theme: category.name,
-      });
-      await createCategoryUseCase.execute({
-        theme: category.name,
-      });
+      await createThemesUseCase.execute({ theme });
+      await createThemesUseCase.execute({ theme });
     }).rejects.toBeInstanceOf(AppError);
   });
 });
