@@ -9,7 +9,8 @@
       "@Errors/*": ["Errors/*"],
       "@Config/*": ["Config/*"],
       "@Shared/*": ["Shared/*"],
-      "@Utils/*": ["Utils/*"]
+      "@Utils/*": ["Utils/*"],
+      "@Validation": ["Validation/*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
