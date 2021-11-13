@@ -1,9 +1,11 @@
-import { CreateThemeController } from "@Modules/Article/UseCases/Theme/CreateThemeController";
-import { Router } from "express";
+import { Router } from 'express';
+import { CreateThemeController } from '@Modules/Article/UseCases/Theme/CreateThemeController';
+import { ensureAuthenticated } from '../Middlewares/ensureAuthenticated';
 
 const routeThemes = Router();
-const createThemeController = new CreateThemeController()
+const createThemeController = new CreateThemeController();
 
-routeThemes.post("/", createThemeController.handle);
+routeThemes.use(ensureAuthenticated);
+routeThemes.post('/', createThemeController.handle);
 
 export { routeThemes };

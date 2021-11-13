@@ -54,7 +54,6 @@ describe('Create user', () => {
     await createUsersUseCase.execute(user);
 
     const res = await usersRepositoryInMemory.findByEmail(user.email);
-
     expect(res.password).not.toEqual(user.password);
   });
 });
