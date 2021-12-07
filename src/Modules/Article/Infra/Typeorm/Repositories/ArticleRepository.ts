@@ -1,9 +1,9 @@
 import { getRepository, Repository } from 'typeorm';
 import { DTOCreateArticle } from '@Modules/Article/DTOS/DTOCreateArticle';
-import { IThemeRepository } from '@Modules/Article/Repositories/IArticlesRepository';
+import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
 import { Articles } from '../Entities/Articles';
 
-class ArticlesRepository implements IThemeRepository {
+class ArticlesRepository implements IArticlesRepository {
   private repository: Repository<Articles>;
 
   constructor() {

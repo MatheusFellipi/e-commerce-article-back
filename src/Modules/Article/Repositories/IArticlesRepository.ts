@@ -1,8 +1,8 @@
 import { DTOCreateArticle } from '../DTOS/DTOCreateArticle';
 import { Articles } from '../Infra/Typeorm/Entities/Articles';
 
-interface IThemeRepository {
+interface IArticlesRepository {
   create(data: DTOCreateArticle): Promise<void>;
 }
 
-export { IThemeRepository };
+export { IArticlesRepository };
