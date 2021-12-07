@@ -1,4 +1,4 @@
-import { DTOCreateTheme } from '../DTOS/IThemeDTO';
+import { DTOCreateTheme } from '../DTOS/DTOCreateTheme';
 import { Themes } from '../Infra/Typeorm/Entities/Themes';
 
 interface IThemeRepository {

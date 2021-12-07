@@ -17,12 +17,35 @@ export class TableArticles1632846922485 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'theme_id',
+            type: 'uuid',
+            isNullable: true,
+          },
+          {
             name: 'title',
             type: 'varchar',
           },
           {
             name: 'text',
             type: 'text',
+          },
+          {
+            name: 'img_url',
+            type: 'varchar',
+          },
+          {
+            name: 'delete',
+            type: 'boolean',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'update_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
         foreignKeys: [
@@ -31,6 +54,14 @@ export class TableArticles1632846922485 implements MigrationInterface {
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
+            onDelete: 'SET NULL',
+            onUpdate: 'SET NULL',
+          },
+          {
+            name: 'FKThemeArticle',
+            referencedTableName: 'themes',
+            referencedColumnNames: ['id'],
+            columnNames: ['theme_id'],
             onDelete: 'SET NULL',
             onUpdate: 'SET NULL',
           },
