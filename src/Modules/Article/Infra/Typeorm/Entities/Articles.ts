@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { Themes } from './Themes';
 import { v4 as uuidV4 } from 'uuid';
-import { User } from '@Modules/Account/Infra/typeorm/Entities/Users';
+import { User } from '@Modules/Accounts/Infra/typeorm/Entities/Users';
 
 @Entity('articles')
 class Articles {

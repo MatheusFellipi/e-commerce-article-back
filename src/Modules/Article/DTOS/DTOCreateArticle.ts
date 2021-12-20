@@ -1,4 +1,4 @@
-import { User } from '@Modules/Account/Infra/typeorm/Entities/Users';
+import { User } from '@Modules/Accounts/Infra/typeorm/Entities/Users';
 import { Themes } from '../Infra/Typeorm/Entities/Themes';
 
 interface DTOCreateArticle {
