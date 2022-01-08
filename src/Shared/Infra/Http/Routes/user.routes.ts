@@ -15,10 +15,10 @@ const updateUseAvatarController = new UpdateUseAvatarController();
 
 routeUsers.post('/', createUsersController.handle);
 
-routeUsers.post(
+routeUsers.patch(
   '/avatar',
-  uploadAvatar.single('avatar'),
   ensureAuthenticated,
+  uploadAvatar.single('avatar'),
   updateUseAvatarController.handle
 );
 

@@ -26,7 +26,6 @@ export class CreateUsersUseCase {
     job_role,
   }: IRequest): Promise<void> {
     const UsersAlreadyExists = await this.repository.findByEmail(email);
-
     if (UsersAlreadyExists) {
       throw new AppError('Users already exists!');
     }

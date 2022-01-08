@@ -14,16 +14,19 @@ class UsersRepository implements IUsersRepository {
     email,
     password,
     name,
-    img_url,
+    avatar,
+    id,
     job_role,
   }: DTOCreateUsers): Promise<void> {
     const user = this.repository.create({
       email,
       password,
       name,
-      img_url,
       job_role,
+      avatar,
+      id,
     });
+
     await this.repository.save(user);
   }
 
