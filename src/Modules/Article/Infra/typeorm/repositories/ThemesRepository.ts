@@ -10,21 +10,20 @@ class ThemeRepository implements IThemeRepository {
     this.repository = getRepository(Themes);
   }
 
-  async create({ theme }: DTOCreateTheme): Promise<void> {
+  async create({ theme, id }: DTOCreateTheme): Promise<void> {
     const themes = this.repository.create({
+      id,
       theme,
     });
     await this.repository.save(themes);
   }
 
   async list(): Promise<Themes[]> {
-    const res = this.repository.find();
-    return res;
+    return this.repository.find();
   }
 
   async findByName(theme: string): Promise<Themes> {
-    const res = this.repository.findOne({ theme });
-    return res;
+    return this.repository.findOne({ theme });
   }
 }
 
