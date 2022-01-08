@@ -12,7 +12,6 @@ export async function ensureAuthenticated(
   next: NextFunction
 ) {
   const authHeader = request.headers.authorization;
-  console.log(authHeader);
 
   if (!authHeader) {
     throw new AppError('Token missing', 401);

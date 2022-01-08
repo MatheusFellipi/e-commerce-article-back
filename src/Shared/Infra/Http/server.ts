@@ -8,6 +8,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import { AppError } from '@Shared/Errors/AppError';
 import swaggerFile from '../../../swagger.json';
+
 import { router } from './Routes';
 
 const port = process.env.PORT || '3333';

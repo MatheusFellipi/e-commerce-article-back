@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
-import { UpdateUseAvatarUseCase } from "./UpdateUseAvatarUseCase";
+import { UpdateUseAvatarUseCase } from './UpdateUseAvatarUseCase';
 
 class UpdateUseAvatarController {
   async handle(request: Request, response: Response): Promise<Response> {
