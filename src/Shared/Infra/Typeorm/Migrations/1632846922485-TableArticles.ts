@@ -17,8 +17,8 @@ export class TableArticles1632846922485 implements MigrationInterface {
             isNullable: true,
           },
           {
-            name: 'theme_id',
-            type: 'uuid',
+            name: 'themes',
+            type: 'text',
             isNullable: true,
           },
           {
@@ -32,10 +32,13 @@ export class TableArticles1632846922485 implements MigrationInterface {
           {
             name: 'img_url',
             type: 'varchar',
+            isNullable: true,
           },
           {
-            name: 'delete',
+            name: 'isDeleted',
             type: 'boolean',
+            isNullable: true,
+            default: false,
           },
           {
             name: 'created_at',
@@ -54,14 +57,6 @@ export class TableArticles1632846922485 implements MigrationInterface {
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL',
-          },
-          {
-            name: 'FKThemeArticle',
-            referencedTableName: 'themes',
-            referencedColumnNames: ['id'],
-            columnNames: ['theme_id'],
             onDelete: 'SET NULL',
             onUpdate: 'SET NULL',
           },

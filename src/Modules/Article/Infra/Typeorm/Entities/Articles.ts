@@ -7,7 +7,6 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { Themes } from './Themes';
 import { v4 as uuidV4 } from 'uuid';
 import { User } from '@Modules/Accounts/Infra/typeorm/Entities/Users';
 
@@ -26,21 +25,17 @@ class Articles {
   @Column()
   user_id: string;
 
-  @ManyToOne(() => Themes)
-  @JoinColumn({ name: 'theme_id' })
-  themes: Themes;
+  @Column()
+  themes: string;
 
   @Column()
-  theme_id: string;
-
-  @Column('varchar')
   text: string;
 
-  @Column('varchar')
+  @Column()
   img_url: string;
 
-  @Column('boolean')
-  delete: boolean;
+  @Column()
+  isDeleted: boolean;
 
   @CreateDateColumn()
   created_at: Date;

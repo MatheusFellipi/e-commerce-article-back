@@ -5,6 +5,7 @@ interface IArticlesRepository {
   create(data: DTOCreateArticle): Promise<void>;
   list(): Promise<Articles[]>;
   FindByName(termoPesquisa: string): Promise<Articles[]>;
+  FindByNameOne(termoPesquisa: string): Promise<Articles>;
 }
 
 export { IArticlesRepository };

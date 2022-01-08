@@ -24,7 +24,7 @@ export class TableUsers1632768148954 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'img_url',
+            name: 'avatar',
             type: 'varchar',
             isNullable: true,
           },

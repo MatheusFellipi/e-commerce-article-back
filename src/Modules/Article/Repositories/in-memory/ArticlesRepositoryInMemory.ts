@@ -1,8 +1,9 @@
 import { DTOCreateArticle } from '@Modules/Article/DTOS/DTOCreateArticle';
 import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
+import { ThemeRepositoryInMemory } from './ThemeRepositoryInMemory';
 import { IArticlesRepository } from '../IArticlesRepository';
 
-export class ThemeRepositoryInMemory implements IArticlesRepository {
+export class ArticlesRepositoryInMemory implements IArticlesRepository {
   private _articles: Articles[];
 
   constructor() {
@@ -14,20 +15,38 @@ export class ThemeRepositoryInMemory implements IArticlesRepository {
       (v) => v.title.toLocaleLowerCase().indexOf(needle) > -1
     );
   }
+  async FindByNameOne(termoPesquisa: string): Promise<Articles> {
+    return this._articles.find((x) => x.title === termoPesquisa);
+  }
 
   async list(): Promise<Articles[]> {
     return this._articles;
   }
 
   async create({
-    theme_id,
     user_id,
-    text,
     title,
+    text,
+    themes,
   }: DTOCreateArticle): Promise<void> {
-    const entitiesArticles = new Articles();
+    const themeRepository = new ThemeRepositoryInMemory();
 
-    Object.assign(entitiesArticles, { theme_id, user_id, text, title });
+    themes.map(async (theme) => {
+      const themeAlreadyExists = await themeRepository.findByName(theme);
+      if (!themeAlreadyExists) {
+        await themeRepository.create({ theme });
+      }
+    });
+
+    const entitiesArticles = new Articles();
+    const themeArrayToString = themes.toString();
+
+    Object.assign(entitiesArticles, {
+      themes: themeArrayToString,
+      user_id,
+      text,
+      title,
+    });
 
     this._articles.push(entitiesArticles);
   }
