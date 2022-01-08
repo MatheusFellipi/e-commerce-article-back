@@ -5,7 +5,7 @@ import { UpdateUseAvatarController } from '@Modules/Accounts/UseCases/UpdateUseA
 import { Router } from 'express';
 
 import uploadConfig from '@Config/upload';
-import { ensureAuthenticated } from '../Middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '../Middlewares/EnsureAuthenticated';
 
 const routeUsers = Router();
 const uploadAvatar = multer(uploadConfig.upload('./tmp/avatar'));
