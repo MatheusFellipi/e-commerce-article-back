@@ -8,7 +8,6 @@ export class UsersRepositoryInMemory implements IUsersRepository {
   async create({
     email,
     job_role,
-    img_url,
     name,
     password,
   }: DTOCreateUsers): Promise<void> {
@@ -17,7 +16,6 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     Object.assign(user, {
       email,
       job_role,
-      img_url,
       name,
       password,
     });

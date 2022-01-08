@@ -22,7 +22,6 @@ describe('Authenticate User', () => {
       email: 'user@teste.com',
       password: '1223456',
       job_role: 'Front end',
-      img_url: 'Uma foto',
     };
 
     await createUsersUseCase.execute(user);
@@ -51,7 +50,6 @@ describe('Authenticate User', () => {
         email: 'user@teste.com',
         password: '1223456',
         job_role: 'Front end',
-        img_url: 'Uma foto',
       };
 
       await createUsersUseCase.execute(user);
