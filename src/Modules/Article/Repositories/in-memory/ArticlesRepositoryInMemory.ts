@@ -8,6 +8,16 @@ export class ThemeRepositoryInMemory implements IArticlesRepository {
   constructor() {
     this._articles = [];
   }
+  async FindByName(termoPesquisa: string): Promise<Articles[]> {
+    const needle = termoPesquisa.toLowerCase();
+    return this._articles.filter(
+      (v) => v.title.toLocaleLowerCase().indexOf(needle) > -1
+    );
+  }
+
+  async list(): Promise<Articles[]> {
+    return this._articles;
+  }
 
   async create({
     theme_id,

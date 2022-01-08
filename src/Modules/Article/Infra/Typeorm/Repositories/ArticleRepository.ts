@@ -9,15 +9,28 @@ class ArticlesRepository implements IArticlesRepository {
   constructor() {
     this.repository = getRepository(Articles);
   }
-
   async create({
     user_id,
     theme_id,
     text,
     title,
+    id,
   }: DTOCreateArticle): Promise<void> {
-    const article = this.repository.create({ theme_id, user_id, text, title });
+    const article = this.repository.create({
+      id,
+      theme_id,
+      user_id,
+      text,
+      title,
+    });
+
     await this.repository.save(article);
+  }
+  async list(): Promise<Articles[]> {
+    return this.repository.find();
+  }
+  async FindByName(termoPesquisa: string): Promise<Articles[]> {
+    return this.repository.find({ title: termoPesquisa });
   }
 }
 
