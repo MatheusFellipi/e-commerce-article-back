@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { authenticateRoutes } from './Authenticate.routes';
 
-import { routeThemes } from './theme.routes';
-import { routeUsers } from './user.routes';
+import { routeThemes } from './Theme.routes';
+import { routeUsers } from './User.routes';
 
 const router = Router();
 
