@@ -7,19 +7,15 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { SaleItem } from './SaleItem';
+import { v4 as uuidV4 } from 'uuid';
 
 @Entity('sales')
 class Sales {
   @PrimaryColumn()
   id: string;
 
-  @ManyToOne(() => SaleItem)
-  @JoinColumn({ name: 'fk_code_sale' })
-  SaleItem: SaleItem;
-
   @Column()
-  fk_code_sale: string;
+  code_saleFK: string;
 
   @Column()
   total: number;
@@ -30,10 +26,11 @@ class Sales {
   @CreateDateColumn()
   created_at: Date;
 
-  @UpdateDateColumn()
-  update_at: Date;
-
-  constructor() {}
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
+    }
+  }
 }
 
 export { Sales };

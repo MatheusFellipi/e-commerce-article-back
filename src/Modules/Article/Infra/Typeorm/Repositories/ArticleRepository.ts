@@ -21,6 +21,7 @@ class ArticlesRepository implements IArticlesRepository {
     themes,
     text,
     title,
+    amount,
     img_url,
     id,
   }: DTOCreateArticle): Promise<void> {
@@ -38,6 +39,7 @@ class ArticlesRepository implements IArticlesRepository {
       img_url,
       user_id,
       themes: themeArrayToString,
+      amount,
       text,
       title,
     });

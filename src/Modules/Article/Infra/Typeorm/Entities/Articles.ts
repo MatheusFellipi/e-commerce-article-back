@@ -26,6 +26,9 @@ class Articles {
   user_id: string;
 
   @Column()
+  amount: number;
+
+  @Column()
   themes: string;
 
   @Column()

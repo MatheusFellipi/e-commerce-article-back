@@ -9,18 +9,23 @@ class SaleItemRepository implements ISaleItemRepository {
   constructor() {
     this.repository = getRepository(SaleItem);
   }
+  async findById(codeProducts: string): Promise<SaleItem> {
+    return await this.repository.findOne(codeProducts);
+  }
 
   async create({
+    id,
     amount,
-    id_code_sale,
+    code_sale,
     item_product,
     seller,
   }: DTOSales_item): Promise<void> {
     const saleItem = this.repository.create({
       amount,
-      id_code_sale,
+      code_sale,
       item_product,
       seller,
+      id,
     });
     await this.repository.save(saleItem);
   }

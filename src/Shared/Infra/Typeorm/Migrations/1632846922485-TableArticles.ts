@@ -30,6 +30,10 @@ export class TableArticles1632846922485 implements MigrationInterface {
             type: 'text',
           },
           {
+            name: 'amount',
+            type: 'decimal',
+          },
+          {
             name: 'img_url',
             type: 'varchar',
             isNullable: true,

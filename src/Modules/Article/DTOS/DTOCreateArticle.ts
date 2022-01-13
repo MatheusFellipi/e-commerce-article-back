@@ -9,6 +9,7 @@ interface DTOCreateArticle {
   title: string;
   img_url?: string;
   themes: string[];
+  amount: number;
 
   isDeleted?: boolean;
   update_at?: Date;

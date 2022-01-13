@@ -5,15 +5,14 @@ import { CreateSaleItemUseCase } from './CreateSaleItemUseCase';
 
 class CreateSaleItemController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { amount, item_product, seller } = request.body;
+    const { items_product } = request.body;
     const { id } = request.user;
+
     const createArticlesUseCase = container.resolve(CreateSaleItemUseCase);
 
     await createArticlesUseCase.execute({
-      amount,
-      item_product,
-      seller,
-      user_id: id,
+      items_product,
+      consumer: id,
     });
 
     return response.status(201).send();

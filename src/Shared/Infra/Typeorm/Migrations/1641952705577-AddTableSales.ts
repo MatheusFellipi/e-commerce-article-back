@@ -12,16 +12,14 @@ export class AddTableSales1641952705577 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'fk_code_sale',
-            type: 'uuid',
-            isNullable: false,
+            name: 'code_saleFK',
+            type: 'varchar',
           },
           {
             name: 'total',
-            type: 'money',
+            type: 'decimal',
             isNullable: false,
           },
-
           {
             name: 'consumer',
             type: 'varchar',
@@ -31,16 +29,6 @@ export class AddTableSales1641952705577 implements MigrationInterface {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
-          },
-        ],
-        foreignKeys: [
-          {
-            name: 'fk_code_sale',
-            referencedTableName: 'sale_item',
-            referencedColumnNames: ['id_code_sale'],
-            columnNames: ['fk_code_sale'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL',
           },
         ],
       })

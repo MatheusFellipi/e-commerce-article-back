@@ -10,6 +10,7 @@ interface IRequest {
   title: string;
   img_url?: string;
   isDeleted?: boolean;
+  amount: number;
 }
 
 @injectable()
@@ -25,6 +26,7 @@ class CreateArticlesUseCase {
     title,
     user_id,
     id,
+    amount,
     img_url,
     isDeleted,
   }: IRequest): Promise<void> {
@@ -34,6 +36,7 @@ class CreateArticlesUseCase {
       title,
       user_id,
       isDeleted,
+      amount,
       id,
       img_url,
     });

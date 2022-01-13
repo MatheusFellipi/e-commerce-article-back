@@ -7,9 +7,13 @@ export class AddTableSaleItem1641940804754 implements MigrationInterface {
         name: 'sale_item',
         columns: [
           {
-            name: 'id_code_sale',
+            name: 'id',
             type: 'uuid',
             isPrimary: true,
+          },
+          {
+            name: 'code_sale',
+            type: 'varchar',
           },
           {
             name: 'item_product',
@@ -23,7 +27,7 @@ export class AddTableSaleItem1641940804754 implements MigrationInterface {
           },
           {
             name: 'amount',
-            type: 'money',
+            type: 'decimal',
             isNullable: false,
           },
           {

@@ -10,7 +10,10 @@ import { v4 as uuidV4 } from 'uuid';
 @Entity('sale_item')
 class SaleItem {
   @PrimaryColumn()
-  id_code_sale: string;
+  id: string;
+
+  @Column()
+  code_sale: string;
 
   @Column()
   item_product: string;
@@ -27,7 +30,11 @@ class SaleItem {
   @UpdateDateColumn()
   update_at: Date;
 
-  constructor() {}
+  constructor() {
+    if (!this.id) {
+      this.id = uuidV4();
+    }
+  }
 }
 
 export { SaleItem };
