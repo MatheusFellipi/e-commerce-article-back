@@ -8,6 +8,11 @@ class SaleRepository implements ISaleRepository {
   constructor() {
     this.repository = getRepository(Sales);
   }
+
+  async findByConsumer(search: string): Promise<Sales[]> {
+    return await this.repository.find({ consumer: search });
+  }
+
   async findById(codeProducts: DTOSales): Promise<Sales> {
     return await this.repository.findOne({});
   }

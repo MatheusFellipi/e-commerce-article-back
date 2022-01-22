@@ -9,8 +9,17 @@ class SaleItemRepository implements ISaleItemRepository {
   constructor() {
     this.repository = getRepository(SaleItem);
   }
-  async findById(codeProducts: string): Promise<SaleItem> {
-    return await this.repository.findOne(codeProducts);
+
+  async findByUser(user_id: string): Promise<SaleItem[]> {
+    return await this.repository.find({ seller: user_id });
+  }
+
+  async findByProduct(codeProducts: string): Promise<SaleItem[]> {
+    return await this.repository.find({ item_product: codeProducts });
+  }
+
+  async findById(id: string): Promise<SaleItem> {
+    return await this.repository.findOne(id);
   }
 
   async create({

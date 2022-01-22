@@ -32,7 +32,9 @@ class CreateSaleItemUseCase {
     const saleRepository = new SaleRepository();
     let total = 0;
 
+    // pesquisar as comprar do comprador
     //se o usuário ja tem o artigo nao irar comprar novamente
+    //
 
     items_product.map((product) => {
       this.salesItemRepository.create({
@@ -50,6 +52,9 @@ class CreateSaleItemUseCase {
       code_saleFK: code_sale,
       total,
     });
+  }
+  validateBuy(product: product): void {
+    this.salesItemRepository.findByProduct(product.user_id);
   }
 }
 export { CreateSaleItemUseCase };
