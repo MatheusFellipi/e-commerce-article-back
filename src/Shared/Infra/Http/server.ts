@@ -5,19 +5,19 @@ import 'express-async-errors';
 import '@Shared/Infra/Typeorm';
 import express, { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
+import helmet from 'helmet';
 
 import { AppError } from '@Shared/Errors/AppError';
 import swaggerFile from '../../../swagger.json';
 
-import { router } from './Routes';
-
+import { router } from './Routes/Index';
 const port = process.env.PORT || '3333';
 
 const app = express();
 
 app.use(express.json());
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(helmet());
 
 app.use(router);
 
