@@ -4,6 +4,30 @@
 
 # Sobre a aplicação
 
+o código esta incompleto estou fazendo ainda os poucos mais a aplicação e um venda de artigos, esta sento feito em node.js com typescript.
+
+## Primeiros Passos
+
+Siga os passos abaixo dentro da pasta após clonar ou baixar o projeto:
+
+```bash
+# Instalar as dependências do projeto
+$ yarn install
+
+ou
+
+$ npm install
+```
+
+```bash
+# Rodar o projeto
+$ yarn start
+
+ou
+
+$ npm start
+```
+
 ## Estudo de desenvolvimento com typescript
 
 - e possível coloca tipo nas informação que um função pode receber
