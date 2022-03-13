@@ -11,7 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'react', 'jsx-a11y', 'import'],
-
+  ignorePatterns: ['view'],
   rules: {
     'react/jsx-filename-extension': [
       'error',
