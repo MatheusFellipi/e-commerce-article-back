@@ -28,6 +28,24 @@ ou
 $ npm start
 ```
 
+- Rota o front-end
+
+```bash
+cd view
+```
+
+```bash
+# Instalar as dependências do projeto
+npm install
+
+```
+
+```bash
+# Rodar o projeto
+npm run dev
+
+```
+
 ## Estudo de desenvolvimento com typescript
 
 - e possível coloca tipo nas informação que um função pode receber
