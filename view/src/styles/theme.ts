@@ -5,9 +5,12 @@ export const theme = extendTheme({
       '50': '#F5F6F9',
       '400': '#A9A7B1',
     },
-    Purple: {
+    purple: {
       '600': '#6356A5',
     },
+    yellow:{
+      "300":"#FEC92E"
+    }
   },
   fonts:{
     heading:"Roboto",

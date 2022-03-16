@@ -1,4 +1,14 @@
-import { Box, Image, Badge } from '@chakra-ui/react';
+import {
+  Box,
+  Image,
+  Badge,
+  Text,
+  Avatar,
+  Flex,
+  Center,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
 export function Articles() {
   const property = {
     imageUrl: 'https://bit.ly/2Z4KKcF',
@@ -13,7 +23,7 @@ export function Articles() {
 
   return (
     <Box
-      maxW="sm"
+      maxW="22rem"
       borderWidth="1px"
       bg="white"
       borderRadius="lg"
@@ -21,39 +31,55 @@ export function Articles() {
     >
       <Image src={property.imageUrl} alt={property.imageAlt} />
 
-      <Box p="6">
-        <Box display="flex" alignItems="baseline">
-          <Badge borderRadius="full" px="2" colorScheme="teal">
-            New
-          </Badge>
-          <Box
-            color="gray.500"
-            fontWeight="semibold"
-            letterSpacing="wide"
-            fontSize="xs"
-            textTransform="uppercase"
-            ml="2"
-          >
-            {property.beds} beds &bull; {property.baths} baths
-          </Box>
+      <Box padding={'3'}>
+        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
+          <Text fontSize="lg">{property.title}</Text>
         </Box>
+        <Flex  mt="1rem" alignItems={'center'}>
 
-        <Box
-          mt="1"
-          fontWeight="semibold"
-          as="h4"
-          lineHeight="tight"
-          isTruncated
-        >
-          {property.title}
-        </Box>
+          <Flex >
+            <Avatar
+              borderColor={'yellow.300'}
+              showBorder
+              size="xs"
+              name="Dan Abrahmov"
+              src="https://bit.ly/dan-abramov"
+            />
+            <Box ml="2">
+              <Text fontSize="8px" fontWeight="bold" flexWrap={'nowrap'}>
+                Segun Adebayo
+                <Badge
+                  fontWeight="normal"
+                  fontStyle="normal"
+                  ml="3"
+                  fontSize="6px"
+                  bgColor={'yellow.300'}
+                  color={'white'}
+                >
+                  Follow
+                </Badge>
+              </Text>
 
-        <Box>
-          {property.formattedPrice}
-          <Box as="span" color="gray.600" fontSize="sm">
-            / wk
+              <Text fontSize="8px">UI Engineer</Text>
+            </Box>
+          </Flex>
+          <Box ml={'10'} maxW="100px">
+            <Text fontSize="8px" color={'gray.400'}>
+              Themes
+            </Text>
+            <Text  fontSize="8px" fontWeight="bold" flexWrap={'wrap'}>
+              UX Design, Business, Sales User Research
+            </Text>
           </Box>
-        </Box>
+          <Box maxW="md" ml={'3'}>
+            <Text fontSize="8px" color={'gray.400'}>
+              temps
+            </Text>
+            <Text fontSize="8px" fontWeight="bold" flexWrap={'nowrap'}>
+              4 minutes
+            </Text>
+          </Box>
+        </Flex>
       </Box>
     </Box>
   );
