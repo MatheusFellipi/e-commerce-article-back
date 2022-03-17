@@ -154,7 +154,7 @@ export default function post() {
               </Text>
             </Box>
           </Flex>
-        </Box> 
+        </Box>
         <Box >
           <CloseButton />
         </Box>
