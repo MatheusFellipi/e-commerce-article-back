@@ -5,9 +5,8 @@ import {
   Text,
   Avatar,
   Flex,
-  Center,
-  Grid,
-  GridItem,
+  Stack,
+  Divider,
 } from '@chakra-ui/react';
 export function Articles() {
   const property = {
@@ -35,9 +34,8 @@ export function Articles() {
         <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
           <Text fontSize="lg">{property.title}</Text>
         </Box>
-        <Flex  mt="1rem" alignItems={'center'}>
-
-          <Flex >
+        <Flex mt="0.5rem" alignItems={'flex-start'}>
+          <Flex>
             <Avatar
               borderColor={'yellow.300'}
               showBorder
@@ -63,15 +61,34 @@ export function Articles() {
               <Text fontSize="8px">UI Engineer</Text>
             </Box>
           </Flex>
-          <Box ml={'10'} maxW="100px">
-            <Text fontSize="8px" color={'gray.400'}>
+
+          <Stack
+            direction="row"
+            h="50px"
+            w="2px"
+            bgColor={'gray.400'}
+            ml={'7'}
+          >
+            <Divider orientation="vertical" bgColor={'gray.400'} />
+          </Stack>
+          <Box ml={'2'} maxW="100px" mr={'1'}>
+            <Text fontSize="8px" color={'gray.400'} >
               Themes
             </Text>
-            <Text  fontSize="8px" fontWeight="bold" flexWrap={'wrap'}>
+            <Text fontSize="8px" fontWeight="bold" flexWrap={'wrap'}>
               UX Design, Business, Sales User Research
             </Text>
           </Box>
-          <Box maxW="md" ml={'3'}>
+
+          <Stack
+            direction="row"
+            h="50px"
+            w="2px"
+            bgColor={'gray.400'}
+          >
+            <Divider orientation="vertical" bgColor={'gray.400'} />
+          </Stack>
+          <Box maxW="md" ml={'1'} >
             <Text fontSize="8px" color={'gray.400'}>
               temps
             </Text>

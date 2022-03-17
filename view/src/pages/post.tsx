@@ -10,6 +10,8 @@ import {
   Divider,
   Stack,
   Button,
+  Grid,
+  GridItem,
   Center,
 } from '@chakra-ui/react';
 import { useState, useMemo } from 'react';
@@ -43,122 +45,106 @@ export default function post() {
   const editor = useMemo(() => withReact(createEditor() as ReactEditor), []);
 
   return (
-    <Container>
-      {/* Usar grid aqui */}
-      <Flex>
-        <Box>
-          <Image
-            src={article.img_url}
-            alt={article.title + ' : ' + article.user_id}
-          />
-          <Box
-            padding={'3'}
-            mt="1"
-            fontWeight="semibold"
-            as="h4"
-            lineHeight="tight"
+    <Flex justifyContent={'flex-end'}>
+      <Box maxW={'430'} pos="relative">
+        <Image
+          src={article.img_url}
+          alt={article.title + ' : ' + article.user_id}
+        />
+        <Box
+          padding={'3'}
+          mt="1"
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+        >
+          <Text fontSize="lg">{article.title}</Text>
+        </Box>
+        <Slate
+          editor={editor}
+          value={text}
+          onChange={(value) => setText(value)}
+        >
+          <Editable readOnly />
+        </Slate>
+        <Flex h="xs">
+          <Flex
+            direction={'column'}
+            alignItems={'start'}
+            w="100%"
+            alignContent={'start'}
           >
-            <Text fontSize="lg">{article.title}</Text>
-          </Box>
-          <Slate
-            editor={editor}
-            value={text}
-            onChange={(value) => setText(value)}
-          >
-            <Editable readOnly />
-          </Slate>
-          <Flex h="xs">
-            <Flex
-              direction={'column'}
-              alignItems={'start'}
-              w="100%"
-              alignContent={'start'}
-            >
-              <Text fontSize="14">
-                To continue reading, you need to buy this article.
-              </Text>
-              <Text fontSize="14" mt="0.5">
-                you can continue this readinf for olny {article.amount} paid
-                your on card
-              </Text>
-              <Flex w="100%" mt="10" justifyContent={'center'}>
-                <Button mt="2" colorScheme="cyan" color={'white'} size="xs">
-                  Buy item
-                </Button>
-              </Flex>
+            <Text fontSize="14">
+              To continue reading, you need to buy this article.
+            </Text>
+            <Text fontSize="14" mt="0.5">
+              you can continue this readinf for olny {article.amount} paid your
+              on card
+            </Text>
+            <Flex w="100%" mt="10" justifyContent={'center'}>
+              <Button mt="2" colorScheme="cyan" color={'white'} size="xs">
+                Buy item
+              </Button>
             </Flex>
           </Flex>
-          <Flex mt="1rem" alignItems={'start'}>
-            <Flex alignItems={'center'}>
-              <Avatar
-                borderColor={'yellow.300'}
-                showBorder
-                size="md"
-                name="Dan Abrahmov"
-                src="https://bit.ly/dan-abramov"
-              />
-              <Box ml="2">
-                <Text fontSize="xs" fontWeight="bold" flexWrap={'nowrap'}>
-                  Segun Adebayo
-                  <Badge
-                    fontWeight="normal"
-                    fontStyle="normal"
-                    ml="3"
-                    fontSize="8px"
-                    bgColor={'yellow.300'}
-                    color={'white'}
-                  >
-                    Follow
-                  </Badge>
-                </Text>
-
-                <Text fontSize="xs">UI Engineer</Text>
-              </Box>
-            </Flex>
-
-            <Stack
-              direction="row"
-              h="50px"
-              w="2px"
-              bgColor={'gray.400'}
-              ml={'10'}
-            >
-              <Divider orientation="vertical" bgColor={'gray.400'} />
-            </Stack>
-
-            <Box ml={'2'} maxW="150px">
-              <Text fontSize="8px" color={'gray.400'}>
-                THEMES
-              </Text>
-              <Text fontSize="xs" fontWeight="bold" flexWrap={'wrap'}>
-                UX Design, Business, Sales User Research
-              </Text>
-            </Box>
-
-            <Stack
-              direction="row"
-              h="50px"
-              w="2px"
-              bgColor={'gray.400'}
-              ml={'10'}
-            >
-              <Divider orientation="vertical" bgColor={'gray.400'} />
-            </Stack>
-
-            <Box h="100%" maxW="md" ml={'2'}>
-              <Text fontSize="8px" color={'gray.400'}>
-                TEMPS
-              </Text>
+        </Flex>
+        <Flex mt="0.5rem" pos="fixed" alignItems={'flex-start'} bottom="1" >
+          <Flex>
+            <Avatar
+              borderColor={'yellow.300'}
+              showBorder
+              size="md"
+              name="Dan Abrahmov"
+              src="https://bit.ly/dan-abramov"
+            />
+            <Box ml="2">
               <Text fontSize="xs" fontWeight="bold" flexWrap={'nowrap'}>
-                4 minutes
+                Segun Adebayo
+                <Badge
+                  fontWeight="normal"
+                  fontStyle="normal"
+                  ml="3"
+                  fontSize="6px"
+                  bgColor={'yellow.300'}
+                  color={'white'}
+                >
+                  Follow
+                </Badge>
               </Text>
+
+              <Text fontSize="xs">UI Engineer</Text>
             </Box>
           </Flex>
-        </Box>
-        <Box >
-          <CloseButton />
-        </Box>
+
+          <Stack direction="row" h="50px" w="2px" bgColor={'gray.400'} ml={'7'}>
+            <Divider orientation="vertical" bgColor={'gray.400'} />
+          </Stack>
+          <Box ml={'2'} maxW="150px" mr={'1'}>
+            <Text fontSize="8px" color={'gray.400'}>
+              THEME
+            </Text>
+            <Text fontSize="10px" fontWeight="bold" flexWrap={'wrap'}>
+              UX Design, Business, Sales User Research
+            </Text>
+          </Box>
+
+          <Stack direction="row" h="50px" w="2px" bgColor={'gray.400'}>
+            <Divider orientation="vertical" bgColor={'gray.400'} />
+          </Stack>
+          <Box maxW="md" ml={'1'}>
+            <Text fontSize="8px" color={'gray.400'}>
+              TEMPS
+            </Text>
+            <Text fontSize="10px" fontWeight="bold" flexWrap={'nowrap'}>
+              4 minutes
+            </Text>
+          </Box>
+        </Flex>
+      </Box>
+
+      <Flex justifyContent={'flex-end'} w="30%">
+        <CloseButton size="lg" />
       </Flex>
-    </Container>
+    </Flex>
   );
 }
