@@ -18,6 +18,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "exclude": ["node_modules", "view"]
   }
 }

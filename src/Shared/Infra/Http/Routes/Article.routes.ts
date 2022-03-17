@@ -12,6 +12,7 @@ const createArticleController = new CreateArticleController();
 const listArticlesController = new ListArticlesController();
 
 routeArticles.get('/', listArticlesController.handle);
+//routeArticles.get('/:id', listArticlesController.handle);
 routeArticles.post('/', ensureAuthenticated, createArticleController.handle);
 
 export { routeArticles };

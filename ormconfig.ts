@@ -1,4 +1,4 @@
-module.exports = {
+const ORMConfig = {
   type: process.env.DB_TYPE,
   host: process.env.DB_HOST,
   username: process.env.DB_USERNAME,
@@ -11,3 +11,5 @@ module.exports = {
     entitiesDir: 'src/Entities',
   },
 };
+
+module.exports = ORMConfig
