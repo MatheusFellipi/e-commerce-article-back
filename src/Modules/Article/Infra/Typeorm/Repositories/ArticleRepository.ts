@@ -48,7 +48,9 @@ class ArticlesRepository implements IArticlesRepository {
   }
 
   async list(): Promise<Articles[]> {
-    return this.repository.find();
+    return await this.repository.find({
+      relations: ['user'],
+    });
   }
 
   async FindByName(termoPesquisa: string): Promise<Articles[]> {
