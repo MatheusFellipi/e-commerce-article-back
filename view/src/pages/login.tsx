@@ -1,8 +1,9 @@
 import { Flex, Button, Box, Image, Text, Stack } from '@chakra-ui/react';
 import { MFInput } from '../components/Form/MFInput';
+import NextLink from 'next/link';
 export default function login() {
   return (
-    <Flex flexDir="column" w="100vw" h="100vh" align="center" justify="center">
+    <Flex flexDir="column" h="100vh" align="center" justify="center">
       <Box mt="5rem" w="10rem">
         <Image src="tog.svg" alt="tog design" />
       </Box>
@@ -55,20 +56,23 @@ export default function login() {
             Forgot your password?
           </Text>
         </Box>
-        <Button
-          w="200px"
-          h="40px"
-          borderRadius="20rem"
-          type="submit"
-          mb="5rem"
-          bgColor={'blue.600'}
-          color="white"
-          _hover={{
-            bgColor: 'blue.700',
-          }}
-        >
-          Sign in
-        </Button>
+
+        <NextLink href="/dashboard" passHref>
+          <Button
+            w="200px"
+            h="40px"
+            borderRadius="20rem"
+            type="submit"
+            mb="5rem"
+            bgColor={'blue.600'}
+            color="white"
+            _hover={{
+              bgColor: 'blue.700',
+            }}
+          >
+            Sign in
+          </Button>
+        </NextLink>
       </Flex>
     </Flex>
   );
