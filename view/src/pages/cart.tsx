@@ -16,8 +16,8 @@ import {
 import { MFInput } from '../components/Form/MFInput';
 export default function Cart() {
   return (
-    <Flex w="100vw" h="100vh">
-      <Flex flexDir="column" width="100%" justify="center" align="center">
+    <Flex h="100vh" justify='end'>
+      <Flex  flexDir="column" justify="center" align="center" pr="15rem">
         <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
           <Text fontSize="md" fontFamily="Montserrat" fontWeight={400}>
             Your cart
@@ -189,12 +189,14 @@ export default function Cart() {
           </Flex>
         </Box>
       </Flex>
+
       <Flex
         flexDir="column"
-        maxW={394}
-        w="394px"
+        maxW={400}
+        w="400px"
         bgColor="gray.200"
         padding={10}
+        h="100%"
       >
         <Box width="100%" mt="5rem" mb="5rem">
           <Text fontSize="24px"> Resume</Text>
@@ -202,7 +204,7 @@ export default function Cart() {
         <MFInput
           name="Discont coupon"
           size="sm"
-          w="266px"
+          w="270px"
           h="40px"
           borderColor="black"
         />
@@ -214,7 +216,6 @@ export default function Cart() {
             R$ 29,80
           </Text>
         </Flex>
-
         <Flex mt={5} mb={2} ml={10} w="75%" justify={'space-between'} as="h4">
           <Text mr={5} fontSize="sm" fontFamily="Montserrat" fontWeight={500}>
             Discount
