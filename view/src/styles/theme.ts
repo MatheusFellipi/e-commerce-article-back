@@ -8,17 +8,17 @@ export const theme = extendTheme({
     purple: {
       '600': '#6356A5',
     },
-    blue:{
-      "600":"#6356A5",
-      "700":"#52488a"
+    blue: {
+      '600': '#6356A5',
+      '700': '#52488a',
     },
-    yellow:{
-      "300":"#FEC92E"
-    }
+    yellow: {
+      '300': '#FEC92E',
+    },
   },
-  fonts:{
-    heading:"Roboto",
-    body:"Roboto"
+  fonts: {
+    heading: 'Roboto',
+    body: 'Roboto',
   },
   styles: {
     global: {
