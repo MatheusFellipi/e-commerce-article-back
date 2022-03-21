@@ -9,6 +9,12 @@ export class ArticlesRepositoryInMemory implements IArticlesRepository {
   constructor() {
     this._articles = [];
   }
+
+  FindById(termoPesquisa: string): Promise<Articles> {
+    const article = this._articles.find((x) => x.title === termoPesquisa);
+    return article
+  }
+
   async FindByName(termoPesquisa: string): Promise<Articles[]> {
     const needle = termoPesquisa.toLowerCase();
     return this._articles.filter(

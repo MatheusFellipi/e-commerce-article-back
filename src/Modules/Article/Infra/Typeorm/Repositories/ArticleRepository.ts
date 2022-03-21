@@ -13,9 +13,20 @@ class ArticlesRepository implements IArticlesRepository {
     this.repository = getRepository(Articles);
     this.themeRepository = new ThemeRepository();
   }
+
+  FindById(termoPesquisa: string): Promise<Articles> {
+    return this.repository.findOne({
+      where: {
+        id: termoPesquisa,
+      },
+      relations: ['user'],
+    });
+  }
+
   FindByNameOne(termoPesquisa: string): Promise<Articles> {
     throw new Error('Method not implemented.');
   }
+
   async create({
     user_id,
     themes,
