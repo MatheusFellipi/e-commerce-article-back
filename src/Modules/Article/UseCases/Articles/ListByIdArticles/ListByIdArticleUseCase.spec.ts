@@ -1,21 +1,20 @@
 import { ArticlesRepositoryInMemory } from '@Modules/Article/Repositories/in-memory/ArticlesRepositoryInMemory';
 import { AppError } from '@Shared/Errors/AppError';
-import { ListArticlesUseCase } from './ListArticleUseCase';
+import { ListByIdArticlesUseCase } from './ListByIdArticleUseCase';
 
 describe('Create articles', () => {
-  let listArticlesUseCase: ListArticlesUseCase;
+  let listByIdArticlesUseCase: ListByIdArticlesUseCase;
   let themeRepositoryInMemory: ArticlesRepositoryInMemory;
 
   beforeEach(() => {
     themeRepositoryInMemory = new ArticlesRepositoryInMemory();
-    listArticlesUseCase = new ListArticlesUseCase(themeRepositoryInMemory);
+    listByIdArticlesUseCase = new ListByIdArticlesUseCase(themeRepositoryInMemory);
   });
 
   it('should be able to list all articles', async () => {
-    await listArticlesUseCase.execute();
-
+    const id = "2"
+    await listByIdArticlesUseCase.execute(id);
     const res = await themeRepositoryInMemory.list();
-
     expect(res).toBeNull;
   });
 });

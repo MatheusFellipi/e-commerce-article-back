@@ -3,14 +3,15 @@ import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
 
 @injectable()
-class ListArticlesUseCase {
+class ListByIdArticlesUseCase {
   constructor(
     @inject('ArticlesRepository')
     private themeRepository: IArticlesRepository
   ) {}
 
-  async execute(): Promise<Articles[]> {
-    return await this.themeRepository.list();
+  async execute(id: string): Promise<Articles> {
+    console.log(await this.themeRepository.FindById(id));
+    return await this.themeRepository.FindById(id);
   }
 }
-export { ListArticlesUseCase };
+export { ListByIdArticlesUseCase };
