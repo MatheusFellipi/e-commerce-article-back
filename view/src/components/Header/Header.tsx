@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 
 export function Header() {
   const route = useRouter();
-  console.log(route);
 
   const [whitGray, setWhitGray] = useState<boolean>(false);
   const [hideOrShow, setHideOrShow] = useState<boolean>(false);
@@ -25,8 +24,8 @@ export function Header() {
       align="center"
       justify="space-between"
     >
-      <NextLink  href="/" passHref>
-        <Box cursor="pointer"  w="10rem" pt={2} ml={10}>
+      <NextLink href="/" passHref>
+        <Box cursor="pointer" w="10rem" pt={2} ml={10}>
           <Image src="tog.svg" alt="tog design" />
         </Box>
       </NextLink>
@@ -42,7 +41,7 @@ export function Header() {
         pt={2}
       >
         {!!hideOrShowDashBtn && (
-          <NextLink href="/dashboard" passHref>
+          <NextLink href="/dashboard/write" passHref>
             <Button
               colorScheme="cyan"
               color="white"
