@@ -7,15 +7,17 @@ import {
   Flex,
   Stack,
   Divider,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
+import { ModalArticleReading } from './ModalArticleReading';
 
 type UsersType = {
   name: string;
   job_role: string;
   avatar: string;
 };
-
 type ArticlesType = {
   id: string;
   title: string;
@@ -24,14 +26,20 @@ type ArticlesType = {
   created_at: string;
   user: UsersType;
 };
-
 interface ArticlesProps {
   article: ArticlesType[];
 }
 
 export function Articles({ article }: ArticlesProps) {
+  const { onOpen, onClose, isOpen } = useDisclosure();
   const [listArticle, setlistArticle] = useState<ArticlesType[]>(article);
+  const [idArticle, setArticle] = useState<string>('');
 
+  const handleOpenModalClick = (id) => {
+    setArticle(id);
+    onOpen();
+  };
+  
   return (
     <>
       {listArticle.map((article) => (
@@ -45,15 +53,16 @@ export function Articles({ article }: ArticlesProps) {
           bg="white"
           borderRadius="lg"
           overflow="hidden"
+          onClick={() => handleOpenModalClick(article.id)}
         >
           <Image
-            src="https://img.freepik.com/vetores-gratis/paisagem-de-marte-planeta-alienigena-fundo-marciano_107791-1781.jpg?t=st=1647618475~exp=1647619075~hmac=aadf3e302b96d6d2e7e5a6873d66f5e4e2611c1fb7bd821da85d60418e6e96c1&w=1380"
+            src="https://img.freepik.com/vetores-gratis/paisagem-de-planeta-alienigena-fundo-marciano_107791-1781.jpg?t=st=1647618475~exp=1647619075~hmac=aadf3e302b96d6d2e7e5a6873d66f5e4e2611c1fb7bd821da85d60418e6e96c1&w=1380"
             alt={article.title}
           />
 
           <Box padding={'3'}>
             <Box mt="1" as="h4">
-              <Text fontSize="lg" fontWeight="500">
+              <Text fontSize="30px" fontWeight="500">
                 {article.title}
               </Text>
             </Box>
@@ -118,6 +127,12 @@ export function Articles({ article }: ArticlesProps) {
           </Box>
         </Box>
       ))}
+      <ModalArticleReading
+        handleOpenModalClick={handleOpenModalClick}
+        onClose={onClose}
+        isOpen={isOpen}
+        idArticle={idArticle}
+      />
     </>
   );
 }
