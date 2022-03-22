@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
+import { useEffect } from 'react';
 import { Articles } from '../components/Articles/Articles';
 export default function Home({ article }) {
   return (
@@ -63,7 +64,6 @@ export default function Home({ article }) {
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('http://localhost:3333/article');
   const data = await response.json();
-
   return {
     props: {
       article: data,
