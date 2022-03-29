@@ -27,7 +27,7 @@ export class AddTableSaleItem1641940804754 implements MigrationInterface {
           },
           {
             name: 'amount',
-            type: 'decimal',
+            type: 'real',
             isNullable: false,
           },
           {

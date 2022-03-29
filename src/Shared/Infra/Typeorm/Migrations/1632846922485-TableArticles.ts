@@ -31,7 +31,7 @@ export class TableArticles1632846922485 implements MigrationInterface {
           },
           {
             name: 'amount',
-            type: 'decimal',
+            type: 'real',
           },
           {
             name: 'img_url',
