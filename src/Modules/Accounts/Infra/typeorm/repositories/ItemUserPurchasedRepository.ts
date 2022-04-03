@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 import { DTOItemUserPurchased } from '@Modules/Accounts/DTOS/DTOItemUserPurchased';
-import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IitemUserPurchasedRepository';
 import { ItemUserPurchased } from '../Entities/ItemUserPurchased';
+import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IItemUserPurchasedRepository';
 
 class ItemUserPurchasedRepository implements IItemUserPurchasedRepository {
   private repository: Repository<ItemUserPurchased>;
