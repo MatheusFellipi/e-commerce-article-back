@@ -8,7 +8,6 @@ class CreateArticleController {
     const { text, themes, title, img_url, amount } = request.body;
     const { id } = request.user;
     const createArticlesUseCase = container.resolve(CreateArticlesUseCase);
-
     await createArticlesUseCase.execute({
       text,
       themes,
