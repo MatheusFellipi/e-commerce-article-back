@@ -13,6 +13,21 @@ class ArticlesRepository implements IArticlesRepository {
     this.repository = getRepository(Articles);
     this.themeRepository = new ThemeRepository();
   }
+  FindByIdOne(termoPesquisa: string): Promise<Articles> {
+    return this.repository.findOne({
+      where: {
+        id: termoPesquisa,
+      },
+    });
+  }
+
+  FindByIdUser(termoPesquisa: string): Promise<Articles[]> {
+    return this.repository.find({
+      where: {
+        user_id: termoPesquisa,
+      },
+    });
+  }
 
   FindById(termoPesquisa: string): Promise<Articles> {
     return this.repository.findOne({
@@ -21,10 +36,6 @@ class ArticlesRepository implements IArticlesRepository {
       },
       relations: ['user'],
     });
-  }
-
-  FindByNameOne(termoPesquisa: string): Promise<Articles> {
-    throw new Error('Method not implemented.');
   }
 
   async create({
@@ -43,7 +54,7 @@ class ArticlesRepository implements IArticlesRepository {
       }
     });
 
-    const themeArrayToString = themes.toString();
+    const themeArrayToString = JSON.stringify(themes);
 
     const article = this.repository.create({
       id,
