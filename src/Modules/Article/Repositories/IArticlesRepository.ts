@@ -6,7 +6,8 @@ interface IArticlesRepository {
   list(): Promise<Articles[]>;
   FindById(termoPesquisa: string): Promise<Articles>;
   FindByName(termoPesquisa: string): Promise<Articles[]>;
-  FindByNameOne(termoPesquisa: string): Promise<Articles>;
+  FindByIdOne(termoPesquisa: string): Promise<Articles>;
+  FindByIdUser(termoPesquisa: string): Promise<Articles[]>;
 }
 
 export { IArticlesRepository };
