@@ -15,6 +15,9 @@ import { SaleItemRepository } from '@Modules/Sales/Infra/Typeorm/Repositories/Sa
 import { ISaleRepository } from '@Modules/Sales/Repositories/ISaleRepository';
 import { SaleRepository } from '@Modules/Sales/Infra/Typeorm/Repositories/SaleRepository';
 
+import { ItemUserPurchasedRepository } from '@Modules/Accounts/Infra/typeorm/repositories/ItemUserPurchasedRepository';
+import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IItemUserPurchasedRepository';
+
 container.registerSingleton<IThemeRepository>(
   'ThemeRepository',
   delay(() => ThemeRepository)
@@ -38,4 +41,9 @@ container.registerSingleton<ISaleItemRepository>(
 container.registerSingleton<ISaleRepository>(
   'SaleRepository',
   delay(() => SaleRepository)
+);
+
+container.registerSingleton<IItemUserPurchasedRepository>(
+  'ItemUserPurchasedRepository',
+  delay(() => ItemUserPurchasedRepository)
 );
