@@ -1,6 +1,5 @@
 import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 import { GetStaticProps } from 'next';
-import { useEffect } from 'react';
 import { Articles } from '../components/Articles/Articles';
 export default function Home({ article }) {
   return (

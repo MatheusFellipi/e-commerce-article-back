@@ -2,7 +2,6 @@ import {
   Box,
   Image,
   Text,
-  Container,
   Badge,
   Flex,
   Avatar,
@@ -10,9 +9,7 @@ import {
   Divider,
   Stack,
   Button,
-  Grid,
-  GridItem,
-  Center,
+  
 } from '@chakra-ui/react';
 import { useState, useMemo } from 'react';
 import { createEditor, Descendant, Element } from 'slate';
