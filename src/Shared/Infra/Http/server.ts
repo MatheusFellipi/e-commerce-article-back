@@ -6,15 +6,17 @@ import '@Shared/Infra/Typeorm';
 import express, { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import helmet from 'helmet';
+var cors = require('cors');
 
 import { AppError } from '@Shared/Errors/AppError';
 import swaggerFile from '../../../swagger.json';
 
-import { router } from './Routes/Index';
+import { router } from './Routes';
 const port = process.env.PORT || '3333';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(helmet());
