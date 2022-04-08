@@ -18,8 +18,8 @@ export function MFInput({ name, label, ...rest }: InputProps) {
         placeholder={name}
         id={name}
         name={name}
-        {...rest}
         focusBorderColor="black"
+        {...rest}
       />
     </FormControl>
   );
