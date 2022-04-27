@@ -21,11 +21,12 @@ type UsersType = {
 type ArticlesType = {
   id: string;
   title: string;
-  themes: string;
+  themes: string[];
   img_url: string;
-  created_at: string;
+  created_at: Date;
   user: UsersType;
 };
+
 interface ArticlesProps {
   article: ArticlesType[];
 }
@@ -39,15 +40,15 @@ export function Articles({ article }: ArticlesProps) {
     setArticle(id);
     onOpen();
   };
-  
+
   return (
     <>
       {listArticle.map((article) => (
         <Box
           cursor={'pointer'}
           key={article.id}
-          maxW="412px"
-          w="412px"
+          maxW="520px"
+          w="520px"
           margin="5"
           borderWidth="1px"
           bg="white"
@@ -62,17 +63,17 @@ export function Articles({ article }: ArticlesProps) {
 
           <Box padding={'3'}>
             <Box mt="1" as="h4">
-              <Text fontSize="30px" fontWeight="500">
+              <Text fontSize="35px" fontWeight="500">
                 {article.title}
               </Text>
             </Box>
-            <Flex mt="0.5rem" alignItems={'flex-start'} justify="center">
-              <Flex w={200} align={'center'}>
+
+            <Flex mt="0.5rem" alignItems={'flex-start'} justify="flex-start">
+              <Flex w={250} align={'center'}>
                 <Avatar
                   borderColor={'yellow.300'}
                   showBorder
-                  w={35}
-                  h={35}
+                  size={'md'}
                   name={article.user.name}
                   src={article.user.avatar}
                 />
@@ -114,7 +115,7 @@ export function Articles({ article }: ArticlesProps) {
                 <Stack direction="row" h="50px" w="2px" bgColor={'gray.400'}>
                   <Divider orientation="vertical" bgColor={'gray.400'} />
                 </Stack>
-                <Box maxW="md" ml={'1'}>
+                <Box maxW="md" ml={'1'} w="46px">
                   <Text fontSize="8px" color={'gray.400'}>
                     TEMPS
                   </Text>
