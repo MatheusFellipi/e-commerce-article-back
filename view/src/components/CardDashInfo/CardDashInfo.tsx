@@ -49,7 +49,7 @@ export function CardDashInfo({ title, inf, links }: ICardDashInfo) {
 
           <Flex justifyContent={'space-around'} w="100px" m={5}>
             {links.map((item) => (
-              <Box cursor="pointer" bgColor={'white'}>
+              <Box key={item.href} cursor="pointer" bgColor={'white'}>
                 <NextLink href={item.href} passHref>
                   <Center>
                     <Icon as={item.icon} />
