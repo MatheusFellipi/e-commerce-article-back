@@ -10,7 +10,14 @@ class ListArticlesUseCase {
   ) {}
 
   async execute(): Promise<Articles[]> {
-    return await this.articlesRepository.list();
+    const list = await this.articlesRepository.list();
+    return list.map((item) => {
+      return {
+        ...item,
+        themes: JSON.parse(item.themes),
+      };
+    });
   }
 }
+
 export { ListArticlesUseCase };
