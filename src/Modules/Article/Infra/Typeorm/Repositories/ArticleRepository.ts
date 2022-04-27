@@ -13,6 +13,7 @@ class ArticlesRepository implements IArticlesRepository {
     this.repository = getRepository(Articles);
     this.themeRepository = new ThemeRepository();
   }
+  
   FindByIdOne(termoPesquisa: string): Promise<Articles> {
     return this.repository.findOne({
       where: {

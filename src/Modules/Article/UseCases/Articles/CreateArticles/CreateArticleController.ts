@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
 import { CreateArticlesUseCase } from './CreateArticleUseCase';
 
 class CreateArticleController {

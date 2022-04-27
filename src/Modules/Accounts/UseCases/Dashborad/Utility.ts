@@ -77,8 +77,13 @@ export const Utility = {
     let auxThems = [];
     let themes = [];
     const key = 'themes';
+
     arr.map((item) => {
-      auxThems = JSON.parse(item.themes);
+      if (typeof item.themes === 'string') {
+        auxThems = JSON.parse(item.themes);
+      } else {
+        auxThems = item.themes;
+      }
       auxThems.map((item) => {
         const e = {
           themes: item,

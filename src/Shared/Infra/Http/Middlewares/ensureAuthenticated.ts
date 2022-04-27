@@ -6,13 +6,13 @@ import { verify } from 'jsonwebtoken';
 interface IPayLoad {
   sub: string;
 }
+
 export async function ensureAuthenticated(
   request: Request,
   response: Response,
   next: NextFunction
 ) {
   const authHeader = request.headers.authorization;
-
   if (!authHeader) {
     throw new AppError('Token missing', 401);
   }

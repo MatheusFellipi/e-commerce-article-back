@@ -43,9 +43,11 @@ export class DashboradUsersUseCase {
 
   async execute({ id }: IRequest): Promise<IReturnDash> {
     const listItemsPuschased = await this.repository.findById(id);
+    
     const listItemsPuschasedArticles = await Utility.GetArticles(
       listItemsPuschased
     );
+
     const themesPuschased = await Utility.GetTheme(listItemsPuschasedArticles);
 
     this.dash = {

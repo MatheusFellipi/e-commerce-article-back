@@ -6,12 +6,11 @@ import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepo
 class ListByIdArticlesUseCase {
   constructor(
     @inject('ArticlesRepository')
-    private themeRepository: IArticlesRepository
+    private articlesRepository: IArticlesRepository
   ) {}
 
   async execute(id: string): Promise<Articles> {
-    console.log(await this.themeRepository.FindById(id));
-    return await this.themeRepository.FindById(id);
+    return await this.articlesRepository.FindById(id);
   }
 }
 export { ListByIdArticlesUseCase };
