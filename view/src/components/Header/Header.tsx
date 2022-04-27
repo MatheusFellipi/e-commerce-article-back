@@ -17,23 +17,21 @@ export function Header() {
       ? setHideOrShowDashBtn(true)
       : setHideOrShowDashBtn(false);
   }, [route.route]);
+
   return (
-    <Flex
-      hidden={hideOrShow}
-      as="header"
-      align="center"
-      justify="space-between"
-    >
-      <NextLink href="/" passHref>
-        <Box cursor="pointer" w="10rem" pt={2} ml={10}>
-          <Image src="tog.svg" alt="tog design" />
-        </Box>
-      </NextLink>
+    <Flex hidden={hideOrShow} as="header" align="center" justify="flex-end">
+      <Box w="1180px">
+        <NextLink href="/" passHref>
+          <Box cursor="pointer" w="10rem" pt={2} ml={10}>
+            <Image src="tog.svg" alt="tog design" />
+          </Box>
+        </NextLink>
+      </Box>
 
       <Flex
         align="center"
-        justify="space-evenly"
-        maxW={400}
+        justify="space-around"
+        maxW={'400px'}
         w="400px"
         bgColor={whitGray ? 'gray.50' : 'gray.200'}
         pl={10}
@@ -46,7 +44,7 @@ export function Header() {
               colorScheme="cyan"
               color="white"
               fontWeight="bold"
-              fontSize="12px"
+              fontSize="16px"
             >
               Write now
             </Button>
@@ -59,7 +57,7 @@ export function Header() {
           width="3rem"
           px="8px"
           borderRadius="2rem"
-          fontSize="14px"
+          fontSize="16px"
           bg="gray.300"
           _hover={{ bg: '#A9A7B0' }}
           _active={{
@@ -75,14 +73,14 @@ export function Header() {
               <Image
                 src="ShoopingBag.svg"
                 alt="Carrinho de compras"
-                w={8}
-                h={8}
+                w={7}
+                h={7}
               />
             </Center>
           </NextLink>
         </Box>
-        <NextLink href="/login" passHref>
-          <Button colorScheme="purple" fontWeight="bold" fontSize="12px">
+          <NextLink href="/login" passHref>
+          <Button colorScheme="purple" fontWeight="bold" fontSize="16px">
             Sign In
           </Button>
         </NextLink>
