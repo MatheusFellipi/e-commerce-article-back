@@ -5,7 +5,7 @@ export default function Home({ article }) {
   return (
     <Box as="main" h="100vh">
       <Flex flexDirection="row">
-        <Flex flexWrap={'wrap'} pl="10rem" pb="1rem" w="79%">
+        <Flex flexWrap={'wrap'} pl="15rem" pb="1rem" w="80%">
           <Articles article={article} />
         </Flex>
 

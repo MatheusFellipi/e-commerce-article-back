@@ -1,27 +1,16 @@
 import { useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { DeleteIcon } from '@chakra-ui/icons';
 import { parseCookies } from 'nookies';
 import {
-  Box,
   Flex,
-  Tr,
-  Th,
-  Td,
-  Table,
-  Thead,
-  Tbody,
-  Button,
-  TableContainer,
 } from '@chakra-ui/react';
 
 import { BiBook, BiEdit, BiLineChart } from 'react-icons/bi';
 
 import { CardDashInfo } from '../../components/CardDashInfo/CardDashInfo';
-import { Formatar } from '../../services/Formatar';
 import { Articles } from '../../components/Articles/Articles';
 
-type PublishedType = {
+type PurchasedType = {
   purchased: {
     listItemsPuschasedArticles: [
       {
@@ -51,9 +40,8 @@ type PublishedType = {
   };
 };
 
-export default function Purchased(published: PublishedType) {
-  const [datas] = useState<PublishedType>(published);
-
+export default function Purchased(purchased: PurchasedType) {
+  const [data] = useState<PurchasedType>(purchased);
   return (
     <Flex
       p="10"
@@ -61,12 +49,12 @@ export default function Purchased(published: PublishedType) {
       alignItems={'flex-start'}
       justifyContent="flex-end"
     >
-      <Box w="1080px" mr={'100px'}>
-        <Articles article={datas.purchased.listItemsPuschasedArticles} />
-      </Box>
+      <Flex flexWrap={'wrap'} pl="15rem" pb="1rem" w="80%">
+        <Articles article={data.purchased.listItemsPuschasedArticles} />
+      </Flex>
 
       <CardDashInfo
-        inf={datas.purchased.themes}
+        inf={data.purchased.themes}
         links={[
           {
             href: '/dashboard',
@@ -109,7 +97,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      published: data.purchased,
+      purchased: data.purchased,
     },
   };
 };
