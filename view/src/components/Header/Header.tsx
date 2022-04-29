@@ -1,14 +1,40 @@
-import { Image, Box, Flex, Button, Link, Center } from '@chakra-ui/react';
+import {
+  Image,
+  Box,
+  Flex,
+  Button,
+  Link,
+  Center,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuDivider,
+  MenuItem,
+  MenuGroup,
+  Avatar,
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { parseCookies, setCookie } from 'nookies';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../services/hook/auth';
 
 export function Header() {
   const route = useRouter();
+  const { signout } = useAuth();
 
   const [whitGray, setWhitGray] = useState<boolean>(false);
   const [hideOrShow, setHideOrShow] = useState<boolean>(false);
   const [hideOrShowDashBtn, setHideOrShowDashBtn] = useState<boolean>(false);
+
+  const [isLogin, setisLogin] = useState<boolean>(() => {
+    const { ['togdesign:token']: token } = parseCookies();
+    if (token) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   useEffect(() => {
     route.route === '/cart' ? setWhitGray(false) : setWhitGray(true);
@@ -16,6 +42,13 @@ export function Header() {
     route.route === '/dashboard'
       ? setHideOrShowDashBtn(true)
       : setHideOrShowDashBtn(false);
+
+    const { ['togdesign:token']: token } = parseCookies();
+    if (token) {
+      setisLogin(true);
+    } else {
+      setisLogin(false);
+    }
   }, [route.route]);
 
   return (
@@ -34,8 +67,8 @@ export function Header() {
         maxW={'400px'}
         w="400px"
         bgColor={whitGray ? 'gray.50' : 'gray.200'}
-        pl={10}
-        pr={10}
+        pl={8}
+        pr={8}
         pt={2}
       >
         {!!hideOrShowDashBtn && (
@@ -79,11 +112,48 @@ export function Header() {
             </Center>
           </NextLink>
         </Box>
-          <NextLink href="/login" passHref>
-          <Button colorScheme="purple" fontWeight="bold" fontSize="16px">
-            Sign In
-          </Button>
-        </NextLink>
+        <Flex justify={'center'} align={'center'}>
+          {isLogin ? (
+            <Button onClick={signout} fontWeight="bold" fontSize="16px">
+              Logout
+            </Button>
+          ) : (
+            <NextLink href="/login" passHref>
+              <Button fontWeight="bold" fontSize="16px">
+                Sign In
+              </Button>
+            </NextLink>
+          )}
+          <Menu>
+            <MenuButton
+              as={Avatar}
+              name="Dan Abrahmov"
+              src="https://bit.ly/dan-abramov"
+            />
+
+            <MenuList>
+              <MenuGroup title="Profile">
+                <NextLink href="/dashboard" passHref>
+                  <MenuItem>Dashboardt</MenuItem>
+                </NextLink>
+              </MenuGroup>
+              <MenuDivider />
+              <MenuGroup>
+                {isLogin ? (
+                  <MenuItem onClick={signout} fontWeight="bold" fontSize="16px">
+                    Logout
+                  </MenuItem>
+                ) : (
+                  <NextLink href="/login" passHref>
+                    <MenuItem fontWeight="bold" fontSize="16px">
+                      Sign In
+                    </MenuItem>
+                  </NextLink>
+                )}
+              </MenuGroup>
+            </MenuList>
+          </Menu>
+        </Flex>
       </Flex>
     </Flex>
   );
