@@ -1,9 +1,5 @@
 import { Badge, Box, Center, Flex, Icon, Progress } from '@chakra-ui/react';
 import NextLink from 'next/link';
-
-import { BiBook, BiEdit, BiLineChart } from 'react-icons/Bi';
-import randomColor from 'randomcolor';
-
 type LinksType = {
   href: string;
   icon: any;
@@ -85,7 +81,7 @@ export function CardDashInfo({ title, inf, links }: ICardDashInfo) {
 
               <Box w={'152px'} pb={'8px'}>
                 <Progress
-                  colorScheme={randomColor()}
+                  isAnimated
                   bgColor={'gray.400'}
                   h={'4px'}
                   value={item.total}
