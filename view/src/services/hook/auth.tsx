@@ -1,11 +1,6 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
-import { destroyCookie, setCookie } from 'nookies';
+import { destroyCookie, parseCookies, setCookie } from 'nookies';
 import { useRouter } from 'next/router';
 import { UserType } from '../Type';
 
@@ -44,7 +39,8 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
 
   const signout = () => {
     setUser(usersInitial);
-    destroyCookie(null, 'togdesgn:token');
+    destroyCookie(null, 'togdesign:token');
+    route.push('/login');
   };
 
   return (
