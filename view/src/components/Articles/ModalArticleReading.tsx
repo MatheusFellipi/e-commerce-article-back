@@ -20,16 +20,19 @@ import {
 import { useEffect, useMemo, useState } from 'react';
 import { createEditor, Descendant } from 'slate';
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
+import { useCart } from '../../services/hook/useCart';
+
 type UsersType = {
   name: string;
   job_role: string;
   avatar: string;
 };
+
 type ArticlesType = {
   amount: string;
   id: string;
   title: string;
-  themes: string;
+  themes: string[];
   text: string;
   img_url: string;
   created_at: string;
@@ -48,6 +51,7 @@ export function ModalArticleReading({
   isOpen,
   idArticle,
 }: ModalArticleReadingProps) {
+  const { addProduct } = useCart();
   const [article, setArticle] = useState<ArticlesType>();
   const [text, setText] = useState<Descendant[]>();
   const editor = useMemo(() => withReact(createEditor() as ReactEditor), []);
@@ -78,7 +82,7 @@ export function ModalArticleReading({
           <ModalCloseButton />
           <ModalBody>
             {article && (
-              <Flex justifyContent={'flex-end'}>
+              <Flex justifyContent={'center'}>
                 <Box maxW={'430'} pos="relative">
                   <Image src={article.img_url} alt={article.title} />
                   <Box
@@ -118,7 +122,8 @@ export function ModalArticleReading({
                           mt="2"
                           colorScheme="cyan"
                           color={'white'}
-                          size="xs"
+                          size="lg"
+                          onClick={() => addProduct(article)}
                         >
                           Buy item
                         </Button>
@@ -130,7 +135,7 @@ export function ModalArticleReading({
             )}
           </ModalBody>
           <ModalFooter>
-            <Flex mt="0.5rem" alignItems={'flex-start'} bottom="1">
+            <Flex mt="0.5rem" alignItems={'center'} bottom="1">
               <Flex>
                 <Avatar
                   borderColor={'yellow.300'}
