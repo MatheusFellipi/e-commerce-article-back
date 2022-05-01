@@ -1,9 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import { IUsersRepository } from '@Modules/Accounts/Repositories/IUsersRepository';
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
-import { ArticlesRepository } from '@Modules/Article/Infra/Typeorm/Repositories/ArticleRepository';
-import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
-import { Utility } from '@Modules/Accounts/UseCases/Dashborad/Utility';
+import { Utility } from '@Modules/Accounts/UseCases/Dashboard/Utility';
 
 type ArticleFormatted = {
   id: string;

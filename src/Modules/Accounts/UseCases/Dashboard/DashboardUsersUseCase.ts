@@ -5,11 +5,12 @@ import { Utility } from './Utility';
 import { Find } from '@Shared/FindOcc';
 
 interface IReturnDash {
-  SalesOfArticles: number;
-  ReadArticles: number;
-  PurchasedArticles: number;
-  CitationsReceived: number;
+  salesOfArticles: number;
+  readArticles: number;
+  purchasedArticles: number;
+  citationsReceived: number;
   listSales: SaleItem[];
+  options: any;
 }
 
 interface IRequest {
@@ -17,7 +18,7 @@ interface IRequest {
 }
 
 @injectable()
-export class DashboradUsersUseCase {
+export class DashboardUsersUseCase {
   private dash: IReturnDash;
 
   constructor(
@@ -29,11 +30,43 @@ export class DashboradUsersUseCase {
     const { listSales, count } = await this.SalesBest(id);
 
     this.dash = {
-      SalesOfArticles: count,
-      ReadArticles: count,
-      CitationsReceived: 0,
-      PurchasedArticles: 0,
+      salesOfArticles: count,
+      readArticles: count,
+      citationsReceived: 0,
+      purchasedArticles: 0,
       listSales,
+      options: {
+        title: {
+          text: 'Your sales for the last 7 days',
+          align: 'left',
+        },
+
+        xAxis: {
+          type: 'datetime',
+          title: {
+            text: null,
+          },
+          units: [['month', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]],
+        },
+
+        yAxis: {
+          title: {
+            text: null,
+          },
+        },
+
+        series: [
+          {
+            data: [
+              [new Date('2022-04-02T19:41:07.328Z'), 40],
+              [new Date('2022-03-02T19:41:07.328Z'), 50],
+              [new Date('2022-02-02T19:41:07.328Z'), 100],
+              [new Date('2022-01-02T19:41:07.328Z'), 200],
+            ],
+            pointStart: 0,
+          },
+        ],
+      },
     };
     return this.dash;
   }

@@ -1,8 +1,9 @@
+import { DashboradController } from '@Modules/Accounts/UseCases/Dashboard/DashboardUsersController';
+import { PublishedUsersController } from '@Modules/Accounts/UseCases/Dashboard/Published/PublishedUsersController';
+import { PurchasedUsersController } from '@Modules/Accounts/UseCases/Dashboard/Purchased/PurchasedUsersController';
 import { Router } from 'express';
 
-import { DashboradController } from '@Modules/Accounts/UseCases/Dashborad/DashboradUsersController';
-import { PublishedUsersController } from '@Modules/Accounts/UseCases/Dashborad/Published/PublishedUsersController';
-import { PurchasedUsersController } from '@Modules/Accounts/UseCases/Dashborad/Purchased/PurchasedUsersController';
+
 import { ensureAuthenticated } from '../Middlewares/EnsureAuthenticated';
 
 const dashboradController = new DashboradController();

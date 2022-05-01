@@ -1,14 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { IUsersRepository } from '@Modules/Accounts/Repositories/IUsersRepository';
-import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
-import { ArticlesRepository } from '@Modules/Article/Infra/Typeorm/Repositories/ArticleRepository';
-import { ItemUserPurchasedRepository } from '@Modules/Accounts/Infra/typeorm/repositories/ItemUserPurchasedRepository';
-import { ISaleItemRepository } from '@Modules/Sales/Repositories/ISaleItemRepository';
-import { SaleItemRepository } from '@Modules/Sales/Infra/Typeorm/Repositories/SaleItemRepository';
+
 
 import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
 import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IItemUserPurchasedRepository';
-import { Find } from '@Shared/FindOcc';
 import { Utility } from '../Utility';
 
 interface IReturnDash {

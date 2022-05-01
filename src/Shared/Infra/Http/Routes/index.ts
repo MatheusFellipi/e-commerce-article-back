@@ -11,7 +11,7 @@ const router = Router();
 
 router.use('/', authenticateRoutes);
 
-router.use('/dashborad', routeDash);
+router.use('/dashboard', routeDash);
 router.use('/themes', routeThemes);
 router.use('/users', routeUsers);
 router.use('/article', routeArticles);
