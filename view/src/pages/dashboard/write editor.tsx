@@ -1,8 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
-
-import { Box, Button, Flex, Image, Input } from '@chakra-ui/react';
-import NextLink from 'next/link';
-
+import React, { useCallback, useMemo, useState } from 'react';
 import isHotkey from 'is-hotkey';
 import { Editable, withReact, useSlate, Slate, ReactEditor } from 'slate-react';
 import {
@@ -12,9 +8,11 @@ import {
   Descendant,
   Element as SlateElement,
 } from 'slate';
+
 import { withHistory } from 'slate-history';
 
-import { Button as Btn, Icon, Toolbar } from '../../components/Articles/Editor';
+import { Button, Icon, Toolbar } from '../../components/Articles/Editor';
+
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -25,7 +23,7 @@ const HOTKEYS = {
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list'];
 
-export default function Write() {
+const RichTextExample = () => {
   const [value, setValue] = useState<Descendant[]>(initialValue);
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
@@ -34,90 +32,76 @@ export default function Write() {
     []
   );
 
+  const props = {
+    id: '6d83b430-c674-4a41-a074-bf37dc13157b',
+    title: 'What was the trend in 2020 and you didn’t use it',
+    user_id: '7339bbfc-5e3e-4d2e-9664-acec9cefad25',
+    amount: '10',
+    themes: 'UX Design, Business, Sales User Research',
+    text: '',
+    img_url: null,
+    isDeleted: false,
+    created_at: '2022-01-24T20:29:28.659Z',
+    update_at: '2022-01-24T20:29:28.659Z',
+  };
+
+  function teste() {
+    const content = JSON.stringify(value);
+
+    localStorage.setItem('content', content);
+
+    const n = {
+      ...props,
+      text: content,
+    };
+
+    const d = JSON.parse(n.text);
+    console.log(d);
+    console.log(n);
+  }
+
   return (
-    <>
-      <Flex as="header" height={120} w={'100%'} justify={'space-between'}>
-        <Box marginTop={'32px'} ml={'183px'}>
-          <Box w="10rem">
-            <Image src="tog.svg" alt="tog design" />
-          </Box>
-        </Box>
+    <div>
 
-        <Flex mr={'82px'} mt={'33px'}>
-          <NextLink href="/dashboard" passHref>
-            <Button colorScheme={'orange'} mr={'48px'}>
-              Cancel
-            </Button>
-          </NextLink>
-          <Button colorScheme={'purple'}>Publish</Button>
-        </Flex>
-      </Flex>
-
-      <Flex
-        justify={'space-between'}
-        height={'100vh'}
-        align={'center'}
-        flexDirection={'column'}
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={(value) => {
+          setValue(value);
+        }}
       >
-        <Flex flexDirection={'column'} justify={'center'} align={'center'}>
-          <Box>
-            <Input></Input>
-            <Box>
-              <Button>Teste</Button>
-            </Box>
-          </Box>
+        <Toolbar>
+          <MarkButton format="bold" icon="format_bold" />
+          <MarkButton format="italic" icon="format_italic" />
+          <MarkButton format="underline" icon="format_underlined" />
+          <MarkButton format="code" icon="code" />
+          <BlockButton format="heading-one" icon="looks_one" />
+          <BlockButton format="heading-two" icon="looks_two" />
+          <BlockButton format="block-quote" icon="format_quote" />
+          <BlockButton format="numbered-list" icon="format_list_numbered" />
+          <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+        </Toolbar>
 
-          <Box>
-            <Slate
-              editor={editor}
-              value={value}
-              onChange={(value) => {
-                setValue(value);
-              }}
-            >
-              <Toolbar>
-                <MarkButton format="bold" icon="format_bold" />
-                <MarkButton format="italic" icon="format_italic" />
-                <MarkButton format="underline" icon="format_underlined" />
-                <MarkButton format="code" icon="code" />
-                <BlockButton format="heading-one" icon="looks_one" />
-                <BlockButton format="heading-two" icon="looks_two" />
-                <BlockButton format="block-quote" icon="format_quote" />
-                <BlockButton
-                  format="numbered-list"
-                  icon="format_list_numbered"
-                />
-                <BlockButton
-                  format="bulleted-list"
-                  icon="format_list_bulleted"
-                />
-              </Toolbar>
-
-              <Editable
-                renderElement={renderElement}
-                renderLeaf={renderLeaf}
-                placeholder="Enter some rich text…"
-                spellCheck={true}
-                autoFocus
-                onKeyDown={(event) => {
-                  for (const hotkey in HOTKEYS) {
-                    if (isHotkey(hotkey, event as any)) {
-                      event.preventDefault();
-                      const mark = HOTKEYS[hotkey];
-                      toggleMark(editor, mark);
-                    }
-                  }
-                }}
-              />
-            </Slate>
-          </Box>
-        </Flex>
-
-        <Flex w={'545px'} h={'106px'} bgColor={'black'} as={'footer'}></Flex>
-      </Flex>
-    </>
+        <Editable
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          placeholder="Enter some rich text…"
+          spellCheck={true}
+          autoFocus
+          onKeyDown={(event) => {
+            for (const hotkey in HOTKEYS) {
+              if (isHotkey(hotkey, event as any)) {
+                event.preventDefault();
+                const mark = HOTKEYS[hotkey];
+                toggleMark(editor, mark);
+              }
+            }
+          }}
+        />
+      </Slate>
+    </div>
   );
-}
+};
 
 const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
@@ -130,7 +114,6 @@ const toggleBlock = (editor, format) => {
       ),
     split: true,
   });
-
   const newProperties: Partial<SlateElement> = {
     type: isActive ? 'paragraph' : isList ? 'list-item' : format,
   };
@@ -208,7 +191,7 @@ const Leaf = ({ attributes, children, leaf }) => {
 const BlockButton = ({ format, icon }) => {
   const editor = useSlate();
   return (
-    <Btn
+    <Button
       active={isBlockActive(editor, format)}
       onMouseDown={(event) => {
         event.preventDefault();
@@ -216,14 +199,14 @@ const BlockButton = ({ format, icon }) => {
       }}
     >
       <Icon>{icon}</Icon>
-    </Btn>
+    </Button>
   );
 };
 
 const MarkButton = ({ format, icon }) => {
   const editor = useSlate();
   return (
-    <Btn
+    <Button
       active={isMarkActive(editor, format)}
       onMouseDown={(event) => {
         event.preventDefault();
@@ -231,13 +214,10 @@ const MarkButton = ({ format, icon }) => {
       }}
     >
       <Icon>{icon}</Icon>
-    </Btn>
+    </Button>
   );
 };
 
-const initialValue: Descendant[] = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'Tell your story … ' }],
-  },
-];
+
+
+export default RichTextExample;
