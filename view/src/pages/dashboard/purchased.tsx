@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { parseCookies } from 'nookies';
-import {
-  Flex,
-} from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { BiBook, BiEdit, BiLineChart } from 'react-icons/bi';
 
@@ -54,6 +52,7 @@ export default function Purchased(purchased: PurchasedType) {
       </Flex>
 
       <CardDashInfo
+        marginRight={'20px'}
         inf={data.purchased.themes}
         links={[
           {
@@ -77,7 +76,7 @@ export default function Purchased(purchased: PurchasedType) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { ['togdesign:token']: token } = parseCookies(ctx);
 
-  const responce = await fetch('http://localhost:3333/dashborad/purchased', {
+  const responce = await fetch('http://localhost:3333/dashboard/purchased', {
     method: 'GET',
     headers: {
       authorization: 'Bearer ' + token,

@@ -97,7 +97,8 @@ export default function Published(published: PublishedType) {
       </Box>
 
       <CardDashInfo
-        inf={datas.published.themes}
+          marginRight={'20px'}
+          inf={datas.published.themes}
         links={[
           {
             href: '/dashboard',
@@ -120,13 +121,15 @@ export default function Published(published: PublishedType) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { ['togdesign:token']: token } = parseCookies(ctx);
 
-  const responce = await fetch('http://localhost:3333/dashborad/published', {
+  const responce = await fetch('http://localhost:3333/dashboard/published', {
     method: 'GET',
     headers: {
       authorization: 'Bearer ' + token,
     },
   });
 
+  console.log(responce);
+  
   const data = await responce.json();
 
   if (!token) {
