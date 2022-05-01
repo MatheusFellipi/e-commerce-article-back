@@ -1,24 +1,9 @@
-import {
-  Image,
-  Box,
-  Flex,
-  Button,
-  Link,
-  Center,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuDivider,
-  MenuItem,
-  MenuGroup,
-  Avatar,
-} from '@chakra-ui/react';
+import { Image, Box, Flex, Button, Center } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { parseCookies, setCookie } from 'nookies';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../services/hook/auth';
-
 export function Header() {
   const route = useRouter();
   const { signout } = useAuth();
@@ -39,9 +24,17 @@ export function Header() {
   useEffect(() => {
     route.route === '/cart' ? setWhitGray(false) : setWhitGray(true);
     route.route === '/login' ? setHideOrShow(true) : setHideOrShow(false);
-    route.route === '/dashboard'
-      ? setHideOrShowDashBtn(true)
-      : setHideOrShowDashBtn(false);
+    route.route === '/dashboard/write' ? setHideOrShow(true) : setHideOrShow(false);
+    
+    if (
+      route.route === '/dashboard' ||
+      route.route === '/dashboard/published' ||
+      route.route === '/dashboard/purchased'
+    ) {
+      setHideOrShowDashBtn(true);
+    } else {
+      setHideOrShowDashBtn(false);
+    }
 
     const { ['togdesign:token']: token } = parseCookies();
     if (token) {
@@ -52,10 +45,15 @@ export function Header() {
   }, [route.route]);
 
   return (
-    <Flex hidden={hideOrShow} as="header" align="center" justify="flex-end">
-      <Box w="1180px">
+    <Flex
+      hidden={hideOrShow}
+      as="header"
+      height={120}
+      justify={'space-between'}
+    >
+      <Box marginTop={'32px'} ml={'20rem'}>
         <NextLink href="/" passHref>
-          <Box cursor="pointer" w="10rem" pt={2} ml={10}>
+          <Box cursor="pointer" w="10rem">
             <Image src="tog.svg" alt="tog design" />
           </Box>
         </NextLink>
@@ -63,13 +61,12 @@ export function Header() {
 
       <Flex
         align="center"
+        marginTop={'32px'}
         justify="space-around"
         maxW={'400px'}
         w="400px"
         bgColor={whitGray ? 'gray.50' : 'gray.200'}
-        pl={8}
-        pr={8}
-        pt={2}
+        mr={'102px'}
       >
         {!!hideOrShowDashBtn && (
           <NextLink href="/dashboard/write" passHref>
@@ -77,7 +74,10 @@ export function Header() {
               colorScheme="cyan"
               color="white"
               fontWeight="bold"
-              fontSize="16px"
+              fontSize="12px"
+              borderRadius={10}
+              w={'106px'}
+              h={'38px'}
             >
               Write now
             </Button>
@@ -112,18 +112,38 @@ export function Header() {
             </Center>
           </NextLink>
         </Box>
-        <Flex justify={'center'} align={'center'}>
-          {isLogin ? (
-            <Button onClick={signout} fontWeight="bold" fontSize="16px">
-              Logout
+
+        {isLogin ? (
+          <Button
+            onClick={signout}
+            color={'white'}
+            bgColor={'purple.600'}
+            fontWeight="bold"
+            fontSize="12px"
+            w={'86px'}
+            h={'38px'}
+            _hover={{
+              filter: `brightness(0.9)`,
+            }}
+            borderRadius={10}
+          >
+            Logout
+          </Button>
+        ) : (
+          <NextLink href="/login" passHref>
+            <Button
+              color={'white'}
+              bgColor={'purple.600'}
+              fontWeight="bold"
+              fontSize="12px"
+            >
+              Sign In
             </Button>
-          ) : (
-            <NextLink href="/login" passHref>
-              <Button fontWeight="bold" fontSize="16px">
-                Sign In
-              </Button>
-            </NextLink>
-          )}
+          </NextLink>
+        )}
+
+        {/* <Flex justify={'center'} align={'center'}>
+    
           <Menu>
             <MenuButton
               as={Avatar}
@@ -153,7 +173,7 @@ export function Header() {
               </MenuGroup>
             </MenuList>
           </Menu>
-        </Flex>
+        </Flex> */}
       </Flex>
     </Flex>
   );
