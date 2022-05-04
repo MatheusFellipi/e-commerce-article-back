@@ -23,9 +23,16 @@ export function Header() {
 
   useEffect(() => {
     route.route === '/cart' ? setWhitGray(false) : setWhitGray(true);
-    route.route === '/login' ? setHideOrShow(true) : setHideOrShow(false);
-    route.route === '/dashboard/write' ? setHideOrShow(true) : setHideOrShow(false);
-    
+    route.route === '/dashboard/write'
+      ? setHideOrShow(true)
+      : setHideOrShow(false);
+
+    if (route.route === '/login') {
+      setHideOrShow(true);
+    } else {
+      setHideOrShow(false);
+    }
+
     if (
       route.route === '/dashboard' ||
       route.route === '/dashboard/published' ||
