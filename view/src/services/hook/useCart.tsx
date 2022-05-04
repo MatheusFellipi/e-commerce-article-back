@@ -14,7 +14,7 @@ type UsersType = {
 };
 
 type ArticlesType = {
-  amount: string;
+  amount: number;
   id: string;
   title: string;
   themes: string[];
@@ -32,6 +32,7 @@ interface CartContextData {
   cart: ArticlesType[];
   addProduct: (article: ArticlesType) => Promise<void>;
   removeProduct: (article: ArticlesType) => void;
+  valueTotal: any;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -49,11 +50,13 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
     return [];
   });
+  const [valueTotal, setValueTotal] = useState<any>(0);
 
   const prevCartRef = useRef<ArticlesType[]>();
 
   useEffect(() => {
     prevCartRef.current = cart;
+    value();
   });
 
   const cartPreviousValues = prevCartRef.current ?? cart;
@@ -62,9 +65,17 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     if (cartPreviousValues !== cart) {
       if (typeof window !== 'undefined') {
         localStorage.setItem('@article:cart', JSON.stringify(cart));
+        value();
       }
     }
   }, [cart, cartPreviousValues]);
+
+  const value = async () => {
+    const total = cart.reduce((total: any, item) => {
+      return total.amount + item.amount;
+    });
+    setValueTotal(total);
+  };
 
   const addProduct = async (article: ArticlesType) => {
     try {
@@ -103,7 +114,9 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addProduct, removeProduct }}>
+    <CartContext.Provider
+      value={{ cart, addProduct, removeProduct, valueTotal }}
+    >
       {children}
     </CartContext.Provider>
   );
