@@ -14,23 +14,39 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { MFInput } from '../components/Form/MFInput';
+import { Formatar } from '../services/Formatar';
+import { useCart } from '../services/hook/useCart';
 export default function Cart() {
+  const { cart, removeProduct, valueTotal } = useCart();
+
   return (
-    <Flex h="100vh" justify='end'>
-      <Flex  flexDir="column" justify="center" align="center" pr="15rem">
-        <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight">
-          <Text fontSize="md" fontFamily="Montserrat" fontWeight={400}>
+    <Flex h="85vh" justify="space-between" align={'flex-start'}>
+      <Flex
+        w={'1200px'}
+        mt={'52px'}
+        ml={'128px'}
+        flexDir="column"
+        justify="center"
+        align="center"
+      >
+        <Box fontWeight="semibold" as="h4" fontSize={'24px'} lineHeight="tight">
+          <Text
+            fontSize="md"
+            fontFamily="Montserrat"
+            size={'24px'}
+            fontWeight={500}
+          >
             Your cart
           </Text>
         </Box>
-        <Box maxW={716.5} w={716.5} mt="10">
-          <Table w="100%" variant="simple">
-            <Thead fontFamily="Montserrat" fontSize="12px" fontWeight={500}>
+        <Box w="100%" mt="10">
+          <Table size="lg" w="100%" variant="simple">
+            <Thead>
               <Th
                 align="left"
                 fontFamily="Montserrat"
-                fontSize="12px"
-                fontWeight={500}
+                fontSize="14px"
+                fontWeight={'bold'}
                 pb="0"
                 pl="5"
                 pr="5"
@@ -41,8 +57,8 @@ export default function Cart() {
               <Th
                 align="left"
                 fontFamily="Montserrat"
-                fontSize="12px"
-                fontWeight={500}
+                fontSize="14px"
+                fontWeight={'bold'}
                 pb="0"
                 pl="5"
                 pr="5"
@@ -52,8 +68,8 @@ export default function Cart() {
               </Th>
               <Th
                 fontFamily="Montserrat"
-                fontSize="12px"
-                fontWeight={500}
+                fontSize="14px"
+                fontWeight={'bold'}
                 align="left"
                 pb="0"
                 pl="5"
@@ -65,8 +81,8 @@ export default function Cart() {
               <Th
                 align="left"
                 fontFamily="Montserrat"
-                fontSize="12px"
-                fontWeight={500}
+                fontSize="14px"
+                fontWeight={'bold'}
                 pb="0"
                 pl="5"
                 pr="5"
@@ -76,105 +92,35 @@ export default function Cart() {
               </Th>
               <Th></Th>
             </Thead>
-            <Tbody>
-              <Tr>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  maxW="200px"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  What was the trend in 2020 and you didn’t use it
-                </Td>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  Daniel Alves
-                </Td>
-                <Td
-                  pb="2"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  Tog.design
-                </Td>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  R$ 10,90
-                </Td>
-                <Td>
-                  <Button colorScheme="gray" variant="ghost">
-                    <DeleteIcon />
-                  </Button>
-                </Td>
-              </Tr>
-              <Tr>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  maxW="200px"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  What was the trend in 2020 and you didn’t use it
-                </Td>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  Daniel Alves
-                </Td>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  Tog.design
-                </Td>
-                <Td
-                  pb="0"
-                  pl="5"
-                  pr="5"
-                  pt="0"
-                  fontFamily="Montserrat"
-                  fontSize="12px"
-                >
-                  R$ 10,90
-                </Td>
-                <Td>
-                  <Button colorScheme="gray" variant="ghost">
-                    <DeleteIcon />
-                  </Button>
-                </Td>
-              </Tr>
+            <Tbody fontFamily="Montserrat" fontSize={'14pxp'}>
+              {cart.map((item) => (
+                <Tr key={item.id}>
+                  <Td pb="0" pl="5" pr="5" pt="0" maxW="200px">
+                    {item.title}
+                  </Td>
+                  <Td pb="0" pl="5" pr="5" pt="0" fontFamily="Montserrat">
+                    {item.user.name}
+                  </Td>
+                  <Td pb="2" pl="5" pr="5" pt="0" fontFamily="Montserrat">
+                    <p>Tog.design</p>
+                  </Td>
+                  <Td pb="0" pl="5" pr="5" pt="0" fontFamily="Montserrat">
+                    {Formatar.Money(item.amount)}
+                  </Td>
+                  <Td>
+                    <Button
+                      onClick={() => removeProduct(item)}
+                      colorScheme="gray"
+                      variant="ghost"
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </Td>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
+
           <Stack bgColor={'gray.700'}>
             <Divider orientation="horizontal" bgColor={'gray.700'} />
           </Stack>
@@ -184,7 +130,7 @@ export default function Cart() {
               Subtotal
             </Text>
             <Text fontSize="xs" fontFamily="Montserrat" fontWeight={400}>
-              R$ 29,80
+              {Formatar.Money(valueTotal)}
             </Text>
           </Flex>
         </Box>
