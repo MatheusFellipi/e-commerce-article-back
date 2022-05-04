@@ -1,5 +1,5 @@
 export const Formatar = {
-  Money(money: number): string {
+  Money(money: number | string): string {
     return money.toLocaleString('pt-br', {
       style: 'currency',
       currency: 'BRL',

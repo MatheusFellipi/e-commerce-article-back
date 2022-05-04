@@ -55,7 +55,7 @@ export function Header() {
     <Flex
       hidden={hideOrShow}
       as="header"
-      height={120}
+      height={"120px"}
       justify={'space-between'}
     >
       <Box marginTop={'32px'} ml={'20rem'}>
@@ -68,12 +68,11 @@ export function Header() {
 
       <Flex
         align="center"
-        marginTop={'32px'}
         justify="space-around"
         maxW={'400px'}
         w="400px"
+        h={'100%'}
         bgColor={whitGray ? 'gray.50' : 'gray.200'}
-        mr={'102px'}
       >
         {!!hideOrShowDashBtn && (
           <NextLink href="/dashboard/write" passHref>
@@ -92,6 +91,7 @@ export function Header() {
         )}
 
         <Box
+          marginTop={'32px'}
           as="button"
           height="3rem"
           width="3rem"
@@ -124,6 +124,8 @@ export function Header() {
           <Button
             onClick={signout}
             color={'white'}
+            marginTop={'32px'}
+            mr={'102px'}
             bgColor={'purple.600'}
             fontWeight="bold"
             fontSize="12px"
@@ -140,6 +142,8 @@ export function Header() {
           <NextLink href="/login" passHref>
             <Button
               color={'white'}
+              marginTop={'32px'}
+              mr={'102px'}
               bgColor={'purple.600'}
               fontWeight="bold"
               fontSize="12px"
