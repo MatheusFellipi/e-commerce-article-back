@@ -14,11 +14,13 @@ export class AddTableSaleItem1641940804754 implements MigrationInterface {
           {
             name: 'code_sale',
             type: 'varchar',
+            isUnique: false,
           },
           {
             name: 'item_product',
             type: 'varchar',
             isNullable: false,
+            isUnique: false,
           },
           {
             name: 'seller',

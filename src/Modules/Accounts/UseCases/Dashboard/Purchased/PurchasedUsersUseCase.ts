@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 
-
 import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
 import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IItemUserPurchasedRepository';
 import { Utility } from '../Utility';
@@ -27,7 +26,7 @@ type GetThemes = {
 };
 
 @injectable()
-export class DashboradUsersUseCase {
+export class PurchasedUsersUseCase {
   private dash: IReturnDash;
 
   constructor(
@@ -37,7 +36,7 @@ export class DashboradUsersUseCase {
 
   async execute({ id }: IRequest): Promise<IReturnDash> {
     const listItemsPuschased = await this.repository.findById(id);
-    
+
     const listItemsPuschasedArticles = await Utility.GetArticles(
       listItemsPuschased
     );

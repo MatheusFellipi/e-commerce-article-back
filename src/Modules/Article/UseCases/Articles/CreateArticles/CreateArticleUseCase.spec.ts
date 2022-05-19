@@ -32,6 +32,6 @@ describe('Create themes', () => {
     const res = await articlesRepositoryInMemory.FindByNameOne(article.title);
     const t = await themeRepositoryInMemory.findByName(article.themes[0]);
 
-    expect(res).toHaveProperty('id');
+    expect(shoppingList).toContain('leite');
   });
 });

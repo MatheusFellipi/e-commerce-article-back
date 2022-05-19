@@ -58,7 +58,7 @@ class CreateSaleItemUseCase {
 
     if (this._IsNotBuyArticles.IsNotBuy) {
       throw new AppError(
-        `Comprar nao autorizada, O usuário ja possui o artigo ${this._IsNotBuyArticles.title}`
+        `Unauthorized purchase, User already owns the item ${this._IsNotBuyArticles.title}`
       );
     }
 
