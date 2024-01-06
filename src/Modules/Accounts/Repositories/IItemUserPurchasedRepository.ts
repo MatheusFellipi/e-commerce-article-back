@@ -4,4 +4,5 @@ import { ItemUserPurchased } from '../Infra/typeorm/Entities/ItemUserPurchased';
 export interface IItemUserPurchasedRepository {
   create(data: DTOItemUserPurchased): Promise<void>;
   findById(id: string): Promise<ItemUserPurchased[]>;
+  findByUserId(id: string): Promise<ItemUserPurchased[]>;
 }

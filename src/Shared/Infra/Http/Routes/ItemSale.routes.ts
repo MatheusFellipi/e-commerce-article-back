@@ -1,8 +1,8 @@
-import multer from 'multer';
-import { CreateSaleItemController } from '@Modules/Sales/UseCases/Sales/CreateSaleItem/CreateSaleItemController';
-import { ensureAuthenticated } from '../Middlewares/EnsureAuthenticated';
-
 import { Router } from 'express';
+
+import { CreateSaleItemController } from '@Modules/Sales/UseCases/CreateSaleItem/CreateSaleItemController';
+import { ensureAuthenticated } from '../Middlewares/ensureAuthenticated';
+
 
 const routeItemSales = Router();
 

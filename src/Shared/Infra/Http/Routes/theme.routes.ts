@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import { CreateThemeController } from '@Modules/Article/UseCases/Theme/CreateTheme/CreateThemeController';
 import { ListThemesController } from '@Modules/Article/UseCases/Theme/ListThemes/ListThemesController';
-import { ensureAuthenticated } from '../Middlewares/EnsureAuthenticated';
+import { ensureAuthenticated } from '../Middlewares/ensureAuthenticated';
 
 const routeThemes = Router();
 const createThemeController = new CreateThemeController();

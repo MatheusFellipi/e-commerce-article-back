@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { DashboardUsersUseCase } from './DashboardUsersUseCase';
 
-export class DashboradController {
+export class DashboardController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.user;
     const createUsersUseCase = container.resolve(DashboardUsersUseCase);

@@ -1,5 +1,5 @@
-import { inject, injectable } from 'tsyringe';
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
+import { inject, injectable } from 'tsyringe';
 import { Utility } from '@Modules/Accounts/UseCases/Dashboard/Utility';
 
 type ArticleFormatted = {
@@ -19,11 +19,8 @@ type GetThemes = {
 };
 
 interface IReturnDash {
-  published: {
-    listArticle: ArticleFormatted[];
-    count: number;
-    themes: GetThemes[];
-  };
+  listArticle: ArticleFormatted[];
+  themes: GetThemes[];
 }
 
 interface IRequest {
@@ -31,7 +28,7 @@ interface IRequest {
 }
 
 @injectable()
-export class DashboradUsersUseCase {
+export class DashboardUsersUseCase {
   private dash: IReturnDash;
 
   constructor(
@@ -41,19 +38,13 @@ export class DashboradUsersUseCase {
 
   async execute({ id }: IRequest): Promise<IReturnDash> {
     const listArticle = await this.repository.FindByIdUser(id);
-    const themesPublished = await Utility.GetTheme(listArticle);
-
     const listArticleFormatted = listArticle.map((item) => {
       return Utility.FormattedArticlesDashEHome(item);
     });
-
-    this.dash = {
-      published: {
-        listArticle: listArticleFormatted,
-        count: listArticle.length,
-        themes: themesPublished,
-      },
+    const themesPublished = await Utility.GetTheme(listArticle);
+    return {
+      listArticle: listArticleFormatted,
+      themes: themesPublished,
     };
-    return this.dash;
   }
 }

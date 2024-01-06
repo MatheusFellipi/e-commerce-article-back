@@ -14,12 +14,8 @@ class ArticlesRepository implements IArticlesRepository {
     this.themeRepository = new ThemeRepository();
   }
   
-  FindByIdOne(termoPesquisa: string): Promise<Articles> {
-    return this.repository.findOne({
-      where: {
-        id: termoPesquisa,
-      },
-    });
+  FindByIds(idsArticles: string[]): Promise<Articles[]> {
+    return this.repository.findByIds(idsArticles);
   }
 
   FindByIdUser(termoPesquisa: string): Promise<Articles[]> {

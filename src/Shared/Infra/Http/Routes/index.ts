@@ -1,11 +1,11 @@
-import { Router } from 'express';
 import { authenticateRoutes } from './Authenticate.routes';
-
-import { routeThemes } from './Theme.routes';
-import { routeUsers } from './User.routes';
 import { routeArticles } from './Article.routes';
-import { routeItemSales } from './ItemSale.routes';
 import { routeDash } from './Dash.routes';
+import { routeItemSales } from './ItemSale.routes';
+import { Router } from 'express';
+import { routeThemes } from './theme.routes';
+import { routeUsers } from './user.routes';
+
 
 const router = Router();
 

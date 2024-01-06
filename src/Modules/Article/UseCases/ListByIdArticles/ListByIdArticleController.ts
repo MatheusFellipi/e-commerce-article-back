@@ -6,11 +6,11 @@ import { ListByIdArticlesUseCase } from './ListByIdArticleUseCase';
 class ListByIdArticlesController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
+    const user = request.user;
     const listThemesUseCase = container.resolve(ListByIdArticlesUseCase);
-    const all = await listThemesUseCase.execute(id);
-    console.log(all);
-    
-    return response.status(200).json(all);
+    const article = await listThemesUseCase.execute(id, user.id);
+    article.themes = JSON.parse(article.themes);
+    return response.status(200).json(article);
   }
 }
 
