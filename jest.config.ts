@@ -1,13 +1,13 @@
-import { pathsToModuleNameMapper } from "ts-jest/utils";
-import { compilerOptions } from "./tsconfig.json";
+import type {Config} from 'jest';
+import {defaults} from 'jest-config';
 
-module.exports = {
+const config: Config = {
   bail: true,
   clearMocks: true,
   coverageProvider: "v8",
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: "<rootDir>/src",
-  }),
+  moduleFileExtensions: [...defaults.moduleFileExtensions, 'mts'],
   preset: "ts-jest",
   testMatch: ["**/*.spec.ts"],
 };
+
+export default config;

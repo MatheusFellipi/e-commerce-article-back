@@ -31,11 +31,11 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    return await this.repository.findOne({ email });
+    return await this.repository.findOneBy({ email:email });
   }
 
   async findById(id: string): Promise<User> {
-    return await this.repository.findOne(id);
+    return await this.repository.findOneBy({id:id});
   }
   
 }

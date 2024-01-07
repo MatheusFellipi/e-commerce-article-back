@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
 import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IItemUserPurchasedRepository';
 import { Utility } from '@Shared/Utils/Utility';
+import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
 
 interface IRequest {
   id: string;
@@ -21,17 +22,22 @@ interface IReturnDash {
 export class PurchasedUsersUseCase {
   constructor(
     @inject('ItemUserPurchasedRepository')
-    private repository: IItemUserPurchasedRepository
+    private repository: IItemUserPurchasedRepository,
+    @inject('ArticlesRepository')
+    private __articleRepos: IArticlesRepository
   ) {}
 
   async execute({ id }: IRequest): Promise<IReturnDash> {
     const listItemsPurchased = await this.repository.findByUserId(id);
-    const listItemsPurchasedArticles = await Utility.GetArticles(
-      listItemsPurchased
-    );
-    const themesPurchased = await Utility.GetTheme(listItemsPurchasedArticles);
+    const ids = listItemsPurchased.map((item) => item.article_id);
+    const article = await this.__articleRepos.FindByIds(ids);
+    const themesPurchased = await Utility.GetTheme(article);
+    const list = article.map((item) => ({
+      ...item,
+      themes: JSON.parse(item.themes),
+    }));
     return {
-      purchased: listItemsPurchasedArticles,
+      purchased: list,
       themes: themesPurchased,
     };
   }

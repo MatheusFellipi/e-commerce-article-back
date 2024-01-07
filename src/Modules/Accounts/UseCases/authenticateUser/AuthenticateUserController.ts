@@ -12,6 +12,7 @@ class AuthenticateUserController {
       email,
       password,
     });
+
     return response.status(200).json(token);
   }
 }

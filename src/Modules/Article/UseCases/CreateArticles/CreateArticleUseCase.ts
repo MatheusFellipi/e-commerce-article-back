@@ -24,12 +24,6 @@ class CreateArticlesUseCase {
   ) {}
 
   async execute(data: IRequest): Promise<void> {
-    for (const theme of data.themes) {
-      const themeAlreadyExists = await this.themeRepository.findByName(theme);
-      if (!themeAlreadyExists) {
-        await this.themeRepository.create({ theme });
-      }
-    }
     const theme = JSON.stringify(data.themes);
     data.text = JSON.stringify(data.text);
     this.__articleRepos.create({

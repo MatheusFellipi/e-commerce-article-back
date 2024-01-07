@@ -1,7 +1,7 @@
-import { ArticlesRepositoryInMemory } from '@Modules/Article/Repositories/in-memory/ArticlesRepositoryInMemory';
-import { CreateArticlesUseCase } from './CreateArticleUseCase';
+import { ArticlesRepositoryInMemory } from "@Modules/Article/Repositories/in-memory/ArticlesRepositoryInMemory";
+import { CreateArticlesUseCase } from "./CreateArticleUseCase";
+import { ThemeRepositoryInMemory } from "@Modules/Article/Repositories/in-memory/ThemeRepositoryInMemory";
 
-import { ThemeRepositoryInMemory } from '@Modules/Article/Repositories/in-memory/ThemeRepositoryInMemory';
 
 describe('Create themes', () => {
   let createArticlesUseCase: CreateArticlesUseCase;
