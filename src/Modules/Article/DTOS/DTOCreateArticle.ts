@@ -1,6 +1,3 @@
-import { User } from '@Modules/Accounts/Infra/typeorm/Entities/Users';
-import { Themes } from '../Infra/Typeorm/Entities/Themes';
-
 interface DTOCreateArticle {
   id?: string;
   user_id: string;
@@ -8,7 +5,7 @@ interface DTOCreateArticle {
   text: string;
   title: string;
   img_url?: string;
-  themes: string[];
+  themes: string;
   amount: number;
 
   isDeleted?: boolean;

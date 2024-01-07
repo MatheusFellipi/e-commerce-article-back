@@ -4,6 +4,7 @@ import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepo
 import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
 import { Articles } from '../Entities/Articles';
 import { ThemeRepository } from './ThemesRepository';
+import { Pagination } from '@Shared/types/pagination';
 
 class ArticlesRepository implements IArticlesRepository {
   private repository: Repository<Articles>;
@@ -13,11 +14,9 @@ class ArticlesRepository implements IArticlesRepository {
     this.repository = getRepository(Articles);
     this.themeRepository = new ThemeRepository();
   }
-  
   FindByIds(idsArticles: string[]): Promise<Articles[]> {
     return this.repository.findByIds(idsArticles);
   }
-
   FindByIdUser(termoPesquisa: string): Promise<Articles[]> {
     return this.repository.find({
       where: {
@@ -25,7 +24,6 @@ class ArticlesRepository implements IArticlesRepository {
       },
     });
   }
-
   FindById(termoPesquisa: string): Promise<Articles> {
     return this.repository.findOne({
       where: {
@@ -34,44 +32,18 @@ class ArticlesRepository implements IArticlesRepository {
       relations: ['user'],
     });
   }
-
-  async create({
-    user_id,
-    themes,
-    text,
-    title,
-    amount,
-    img_url,
-    id,
-  }: DTOCreateArticle): Promise<void> {
-    themes.map(async (theme) => {
-      const themeAlreadyExists = await this.themeRepository.findByName(theme);
-      if (!themeAlreadyExists) {
-        await this.themeRepository.create({ theme });
-      }
-    });
-
-    const themeArrayToString = JSON.stringify(themes);
-
-    const article = this.repository.create({
-      id,
-      img_url,
-      user_id,
-      themes: themeArrayToString,
-      amount,
-      text,
-      title,
-    });
-
+  async create(data: DTOCreateArticle): Promise<void> {
+    const article = this.repository.create(data);
     await this.repository.save(article);
   }
-
-  async list(): Promise<Articles[]> {
+  async list({ page, page_size }: Pagination): Promise<Articles[]> {
+    const skip = (page - 1) * page_size;
     return await this.repository.find({
       relations: ['user'],
+      take: page_size,
+      skip,
     });
   }
-
   async FindByName(termoPesquisa: string): Promise<Articles[]> {
     return this.repository.find({ title: termoPesquisa });
   }

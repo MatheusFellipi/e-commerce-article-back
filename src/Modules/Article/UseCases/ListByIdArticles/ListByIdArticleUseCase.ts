@@ -23,9 +23,10 @@ class ListByIdArticlesUseCase {
     if (isPurchased) {
       userIsPurchased = true;
     }
-
+    const article = await this.__articlesRepository.FindById(article_id);
     return {
-      ...(await this.__articlesRepository.FindById(article_id)),
+      ...article,
+      text: JSON.parse(article.text),
       userIsPurchased,
     };
   }

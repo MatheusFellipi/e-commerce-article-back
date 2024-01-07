@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
+import { Pagination } from '@Shared/types/pagination';
+import { Utility } from '@Shared/Utils/Utility';
 
 @injectable()
 class ListArticlesUseCase {
@@ -9,14 +10,9 @@ class ListArticlesUseCase {
     private articlesRepository: IArticlesRepository
   ) {}
 
-  async execute(): Promise<Articles[]> {
-    const list = await this.articlesRepository.list();
-    return list.map((item) => {
-      return {
-        ...item,
-        themes: JSON.parse(item.themes),
-      };
-    });
+  async execute(pagination: Pagination): Promise<any[]> {
+    const list = await this.articlesRepository.list(pagination);
+    return list.map((item) => Utility.FormattedArticlesDashEHomeUsers(item));
   }
 }
 

@@ -10,8 +10,8 @@ class SaleItemRepository implements ISaleItemRepository {
     this.repository = getRepository(SaleItem);
   }
 
-  async findByUser(user_id: string): Promise<SaleItem[]> {
-    return await this.repository.find({ seller: user_id });
+  async findByOwner(owner_id: string): Promise<SaleItem[]> {
+    return await this.repository.find({ seller: owner_id });
   }
 
   async findByProduct(codeProducts: string): Promise<SaleItem[]> {

@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { Articles } from '@Modules/Article/Infra/Typeorm/Entities/Articles';
 import { IItemUserPurchasedRepository } from '@Modules/Accounts/Repositories/IItemUserPurchasedRepository';
-import { Utility } from '../Utility';
+import { Utility } from '@Shared/Utils/Utility';
 
 interface IRequest {
   id: string;

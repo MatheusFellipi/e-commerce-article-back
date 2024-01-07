@@ -12,10 +12,8 @@ describe('Create articles', () => {
   });
 
   it('should be able to list all articles', async () => {
-    await listArticlesUseCase.execute();
-
+    await listArticlesUseCase.execute({ page: 1, page_size: 20 });
     const res = await themeRepositoryInMemory.list();
-
     expect(res).toBeNull;
   });
 });

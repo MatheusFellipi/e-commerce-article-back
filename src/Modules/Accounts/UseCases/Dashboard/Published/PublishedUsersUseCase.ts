@@ -1,6 +1,6 @@
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
+import { Utility } from '@Shared/Utils/Utility';
 import { inject, injectable } from 'tsyringe';
-import { Utility } from '@Modules/Accounts/UseCases/Dashboard/Utility';
 
 type ArticleFormatted = {
   id: string;

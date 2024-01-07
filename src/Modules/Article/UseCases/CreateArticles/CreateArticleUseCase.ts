@@ -1,12 +1,13 @@
 import { inject, injectable } from 'tsyringe';
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
 import { AppError } from '@Shared/Errors/AppError';
+import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
 
 interface IRequest {
   id?: string;
   user_id: string;
   themes: string[];
-  text: string;
+  text: any;
   title: string;
   img_url?: string;
   isDeleted?: boolean;
@@ -17,28 +18,23 @@ interface IRequest {
 class CreateArticlesUseCase {
   constructor(
     @inject('ArticlesRepository')
-    private articleRepository: IArticlesRepository
+    private __articleRepos: IArticlesRepository,
+    @inject('ThemeRepository')
+    private themeRepository: IThemeRepository
   ) {}
 
-  async execute({
-    text,
-    themes,
-    title,
-    user_id,
-    id,
-    amount,
-    img_url,
-    isDeleted,
-  }: IRequest): Promise<void> {
-    this.articleRepository.create({
-      text,
-      themes,
-      title,
-      user_id,
-      isDeleted,
-      amount,
-      id,
-      img_url,
+  async execute(data: IRequest): Promise<void> {
+    for (const theme of data.themes) {
+      const themeAlreadyExists = await this.themeRepository.findByName(theme);
+      if (!themeAlreadyExists) {
+        await this.themeRepository.create({ theme });
+      }
+    }
+    const theme = JSON.stringify(data.themes);
+    data.text = JSON.stringify(data.text);
+    this.__articleRepos.create({
+      ...data,
+      themes: theme,
     });
   }
 }

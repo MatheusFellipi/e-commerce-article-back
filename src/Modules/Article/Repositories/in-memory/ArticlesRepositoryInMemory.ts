@@ -9,6 +9,12 @@ export class ArticlesRepositoryInMemory implements IArticlesRepository {
   constructor() {
     this._articles = [];
   }
+  FindByIds(idsArticles: string[]): Promise<Articles[]> {
+    throw new Error('Method not implemented.');
+  }
+  FindByIdUser(termoPesquisa: string): Promise<Articles[]> {
+    throw new Error('Method not implemented.');
+  }
 
   FindById(termoPesquisa: string): Promise<Articles> {
     const article = this._articles.find((x) => x.title === termoPesquisa);

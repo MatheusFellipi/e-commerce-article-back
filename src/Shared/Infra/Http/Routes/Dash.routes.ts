@@ -1,4 +1,4 @@
-import { DashboardController } from '@Modules/Accounts/UseCases/Dashboard/general/DashboardUsersController';
+import { DashboardController } from '@Modules/Accounts/UseCases/Dashboard/General/DashboardUsersController';
 import { ensureAuthenticated } from '../Middlewares/ensureAuthenticated';
 import { PublishedUsersController } from '@Modules/Accounts/UseCases/Dashboard/Published/PublishedUsersController';
 import { PurchasedUsersController } from '@Modules/Accounts/UseCases/Dashboard/Purchased/PurchasedUsersController';
