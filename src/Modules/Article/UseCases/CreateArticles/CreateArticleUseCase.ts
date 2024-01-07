@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import { IArticlesRepository } from '@Modules/Article/Repositories/IArticlesRepository';
-import { AppError } from '@Shared/Errors/AppError';
 import { IThemeRepository } from '@Modules/Article/Repositories/IThemeRepository';
 
 interface IRequest {

@@ -29,8 +29,6 @@ interface IRequest {
 
 @injectable()
 export class DashboardUsersUseCase {
-  private dash: IReturnDash;
-
   constructor(
     @inject('ArticlesRepository')
     private repository: IArticlesRepository

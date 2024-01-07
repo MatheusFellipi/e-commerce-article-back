@@ -27,7 +27,6 @@ interface IRequest {
 @injectable()
 export class DashboardUsersUseCase {
   private dash: IReturnDash;
-
   constructor(
     @inject('SaleItemRepository')
     private __saleItemRepos: ISaleItemRepository,
@@ -36,7 +35,6 @@ export class DashboardUsersUseCase {
     @inject('ItemUserPurchasedRepository')
     private __itemUserPurchasedRepository: IItemUserPurchasedRepository
   ) {}
-
   async execute({ id }: IRequest): Promise<IReturnDash> {
     const listSales = await this.__saleItemRepos.findByOwner(id);
     const bestSales = await this.SalesBest(listSales);
